@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex report"] 1623736156 "report.aux" "report.bbl" "report" 1624013425
+["bibtex report"] 1623736156 "report.aux" "report.bbl" "report" 1624087213
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/harvard/agsm.bst" 1480098435 25549 e3d0f1ab4ae55e777f7352db30e2c6f7 ""
   "references.bib" 1623707100 384 3a8dbf86a8c2c41e4b4d3272251cf226 ""
   "report.aux" 1624013424 513 c9b4f0ce682901cb5ae3ef8d25a2cb0e ""
   (generated)
   "report.bbl"
   "report.blg"
-["pdflatex"] 1624013423 "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.tex" "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.pdf" "report" 1624013425
+["pdflatex"] 1624013423 "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.tex" "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.pdf" "report" 1624087213
   "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.aux" 1624013424 513 c9b4f0ce682901cb5ae3ef8d25a2cb0e ""
   "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.tex" 1624013423 2069 8f15ea00c8edbcef13a2bd5ab4ee8fc4 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
@@ -108,8 +108,8 @@
   "report.bbl" 1623736156 443 dfc5917bda23ddda01f2cb88faeb6125 "bibtex report"
   "report.tex" 1624013423 2069 8f15ea00c8edbcef13a2bd5ab4ee8fc4 ""
   (generated)
-  "report.pdf"
-  "report.log"
   "report.aux"
+  "report.log"
   "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.pdf"
   "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.log"
+  "report.pdf"

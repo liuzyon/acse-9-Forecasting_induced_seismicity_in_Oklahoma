@@ -130,10 +130,19 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT /Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/project plan/./figures/gantt.png
 INPUT ./figures/gantt.png
 INPUT ./figures/gantt.png
+INPUT /Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/project plan/./figures/well.png
+INPUT ./figures/well.png
+INPUT ./figures/well.png
+INPUT /Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/project plan/./figures/earthquake.png
+INPUT ./figures/earthquake.png
+INPUT ./figures/earthquake.png
 INPUT /Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/project plan/report.bbl
 INPUT /Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/project plan/report.bbl
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/project plan/./figures/contact.png
+INPUT ./figures/contact.png
+INPUT ./figures/contact.png
 INPUT /Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/project plan/report.aux
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb

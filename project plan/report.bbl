@@ -1,5 +1,11 @@
 \begin{thebibliography}{xx}
 
+\harvarditem{Alshamrani \harvardand\ Bahattab}{2015}{alshamrani2015comparison}
+Alshamrani, A. \harvardand\ Bahattab, A.  \harvardyearleft
+  2015\harvardyearright , `A comparison between three sdlc models waterfall
+  model, spiral model, and incremental/iterative model', {\em International
+  Journal of Computer Science Issues (IJCSI)} {\bf 12}(1),~106.
+
 \harvarditem{Ellsworth}{2013}{ellsworth2013injection}
 Ellsworth, W.~L.  \harvardyearleft 2013\harvardyearright , `Injection-induced
   earthquakes', {\em Science} {\bf 341}(6142).
@@ -9,6 +15,12 @@ Ellsworth, W.~L.  \harvardyearleft 2013\harvardyearright , `Injection-induced
 Hincks, T., Aspinall, W., Cooke, R. \harvardand\ Gernon, T.  \harvardyearleft
   2018\harvardyearright , `Oklahoma's induced seismicity strongly linked to
   wastewater injection depth', {\em Science} {\bf 359}(6381),~1251--1255.
+
+\harvarditem{Norbeck \harvardand\ Rubinstein}{2018}{norbeck2018hydromechanical}
+Norbeck, J. \harvardand\ Rubinstein, J.~L.  \harvardyearleft
+  2018\harvardyearright , `Hydromechanical earthquake nucleation model
+  forecasts onset, peak, and falling rates of induced seismicity in oklahoma
+  and kansas', {\em Geophysical Research Letters} {\bf 45}(7),~2963--2975.
 
 \harvarditem{Wozniakowska \harvardand\ Eaton}{2020}{wozniakowska2020machine}
 Wozniakowska, P. \harvardand\ Eaton, D.~W.  \harvardyearleft
