@@ -7,4 +7,33 @@ Beg, M., Taka, J., Kluyver, T., Konovalov, A., Ragan-Kelley, M., Thiéry, N.~M.
   {J}upyter for reproducible scientific workflows', {\em Computing in Science
   and Engineering} {\bf 23}(2),~36--46.
 
+\harvarditem{Ellsworth}{2013}{ellsworth2013injection}
+Ellsworth, W.~L.  \harvardyearleft 2013\harvardyearright , `Injection-induced
+  earthquakes', {\em Science} {\bf 341}(6142).
+
+\harvarditem[Hincks et~al.]{Hincks, Aspinall, Cooke \harvardand\
+  Gernon}{2018}{hincks2018oklahoma}
+Hincks, T., Aspinall, W., Cooke, R. \harvardand\ Gernon, T.  \harvardyearleft
+  2018\harvardyearright , `Oklahoma's induced seismicity strongly linked to
+  wastewater injection depth', {\em Science} {\bf 359}(6381),~1251--1255.
+
+\harvarditem[Hough et~al.]{Hough, Tsai, Walker \harvardand\
+  Aminzadeh}{2017}{Hough2017WasTM}
+Hough, S., Tsai, V., Walker, R. \harvardand\ Aminzadeh, F.  \harvardyearleft
+  2017\harvardyearright , `Was the mw 7.5 1952 kern county, california,
+  earthquake induced (or triggered)?', {\em Journal of Seismology} {\bf
+  21},~1613 -- 1621.
+
+\harvarditem{Norbeck \harvardand\ Rubinstein}{2018}{norbeck2018hydromechanical}
+Norbeck, J. \harvardand\ Rubinstein, J.~L.  \harvardyearleft
+  2018\harvardyearright , `Hydromechanical earthquake nucleation model
+  forecasts onset, peak, and falling rates of induced seismicity in oklahoma
+  and kansas', {\em Geophysical Research Letters} {\bf 45}(7),~2963--2975.
+
+\harvarditem{Wozniakowska \harvardand\ Eaton}{2020}{wozniakowska2020machine}
+Wozniakowska, P. \harvardand\ Eaton, D.~W.  \harvardyearleft
+  2020\harvardyearright , `Machine learning-based analysis of geological
+  susceptibility to induced seismicity in the montney formation, canada', {\em
+  Geophysical Research Letters} {\bf 47}(22),~e2020GL089651.
+
 \end{thebibliography}

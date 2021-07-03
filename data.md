@@ -79,3 +79,6 @@ In this project, you will use a unique and rich dataset of industrial  activitie
 | 2021/06/09 | Stephen P. Hicks, Zhiyong Liu | Teams | Project progress report (dataset import and visualization)   |
 | 2021/06/21 | Stephen P. Hicks, Zhiyong Liu | Teams | Project update and results presentation, next missions to do |
 
+6.21 开始后任务
+
+对区域进行划分，区域各种诱导参数不同对地震出现的影响（空间维度）
