@@ -1,12 +1,5 @@
 \begin{thebibliography}{xx}
 
-\harvarditem[Beg et~al.]{Beg, Taka, Kluyver, Konovalov, Ragan-Kelley, Thiéry
-  \harvardand\ Fangohr}{2021}{Beg2021}
-Beg, M., Taka, J., Kluyver, T., Konovalov, A., Ragan-Kelley, M., Thiéry, N.~M.
-  \harvardand\ Fangohr, H.  \harvardyearleft 2021\harvardyearright , `Using
-  {J}upyter for reproducible scientific workflows', {\em Computing in Science
-  and Engineering} {\bf 23}(2),~36--46.
-
 \harvarditem{Ellsworth}{2013}{ellsworth2013injection}
 Ellsworth, W.~L.  \harvardyearleft 2013\harvardyearright , `Injection-induced
   earthquakes', {\em Science} {\bf 341}(6142).
@@ -29,6 +22,34 @@ Norbeck, J. \harvardand\ Rubinstein, J.~L.  \harvardyearleft
   2018\harvardyearright , `Hydromechanical earthquake nucleation model
   forecasts onset, peak, and falling rates of induced seismicity in oklahoma
   and kansas', {\em Geophysical Research Letters} {\bf 45}(7),~2963--2975.
+
+\harvarditem[Paszke et~al.]{Paszke, Gross, Massa, Lerer, Bradbury, Chanan,
+  Killeen, Lin, Gimelshein, Antiga et~al.}{2019}{paszke2019pytorch}
+Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., Killeen,
+  T., Lin, Z., Gimelshein, N., Antiga, L. et~al.  \harvardyearleft
+  2019\harvardyearright , `Pytorch: An imperative style, high-performance deep
+  learning library', {\em Advances in neural information processing systems}
+  {\bf 32},~8026--8037.
+
+\harvarditem{Patel}{2018}{patel2018two}
+Patel, M.  \harvardyearleft 2018\harvardyearright , `When two trends fuse:
+  Pytorch and recommender systems'.
+
+\harvarditem{PyTorch}{2021}{PyTorch}
+PyTorch  \harvardyearleft 2021\harvardyearright , `Stepwise regression tutorial
+  in python'.
+\newline\harvardurl{https://pytorch.org/docs/stable/index.html}
+
+\harvarditem{Ryan}{2020}{Ryan}
+Ryan, K.  \harvardyearleft 2020\harvardyearright , `Stepwise regression
+  tutorial in python'.
+\newline\harvardurl{https://towardsdatascience.com/stepwise-regression-tutorial-in-python-ebf7c782c922}
+
+\harvarditem[Sundararajan et~al.]{Sundararajan, Taly \harvardand\
+  Yan}{2017}{sundararajan2017axiomatic}
+Sundararajan, M., Taly, A. \harvardand\ Yan, Q.  \harvardyearleft
+  2017\harvardyearright , Axiomatic attribution for deep networks, {\em in}
+  `International Conference on Machine Learning', PMLR, pp.~3319--3328.
 
 \harvarditem{Wozniakowska \harvardand\ Eaton}{2020}{wozniakowska2020machine}
 Wozniakowska, P. \harvardand\ Eaton, D.~W.  \harvardyearleft

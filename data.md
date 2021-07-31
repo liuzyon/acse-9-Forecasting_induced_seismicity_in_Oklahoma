@@ -6,7 +6,7 @@ Do human activities cause earthquakes in tectonically active areas? A big data a
 
 It is well established that humans can cause earthquakes through fluid extraction (e.g. oil, gas, groundwater) and injection (e.g. wastewater disposal and hydraulic fracturing). Such cases of induced seismicity have been well-documented and established in Oklahoma, where there has been a dramatic increase in seismicity since 2010 (Ellsworth, 2013). In cases like Oklahoma, it is easier to establish the fundamental causes of induced seismicity because the rate of earthquakes prior to high-rate wastewater injection was very low. So due to the low background stress in intraplate regions, the human triggering signatures are clearly identifiable. However, distinguishing between natural and triggered seismicity in tectonically-active areas is more challenging. Large-scale big-data and statistical approaches are one approach to predict the locations where human triggered seismicity may be expected (e.g. Hincks et al., 2018; Ries et al., 2020; Wozniakowska & Eaton, 2020). In tectonically active regions in the US, such as California, although oil and gas extraction has taken place for many decades, only a handful of studies have been published with a focus on these areas (e.g. Hough et al., 2017). Big-data and statistical approaches will be  crucial in separating natural causes from potential human triggering factors in these areas.
 
-In this project, you will use a unique and rich dataset of industrial activities from regions in California  to statistically evaluate and retrospectively forecast possible signatures of human-induced seismicity from existing high-quality earthquake catalogues in these regions. The database you will use includes borehole locations & geological metadata; monthly injection and extraction volumes.  To test the existence of correlations between oil and gas activity and seismicity, you will use and develop Machine Learning techniques to generate a model with predictive capabilities. To produce a simple model of earthquake occurrence, one starting point could be Linear Regression and Logistic Regression. You will have regular meetings with the main supervisor (Hicks), as well as joining in with discussions with the larger research team, who are currently carrying out similar analyses for earthquakes in Texas. You will be expected to do your own Python coding , including using specific Python libraries such as Pandas, Scikit-Learn, statsmodels, matplotlib, and some GIS modules.
+In this project, you will use a unique and rich dataset of industrial activities from regions in Oklahoma to statistically evaluate and retrospectively forecast possible signatures of human-induced seismicity from existing high-quality earthquake catalogues in these regions. The database you will use includes borehole locations & geological metadata; monthly injection and extraction volumes.  To test the existence of correlations between oil and gas activity and seismicity, you will use and develop Machine Learning techniques to generate a model with predictive capabilities. To produce a simple model of earthquake occurrence, one starting point could be Linear Regression and Logistic Regression. You will have regular meetings with the main supervisor (Hicks), as well as joining in with discussions with the larger research team, who are currently carrying out similar analyses for earthquakes in Texas. You will be expected to do your own Python coding , including using specific Python libraries such as Pandas, Scikit-Learn, statsmodels, matplotlib, and some GIS modules.
 
 Further reading
 
@@ -26,21 +26,25 @@ https://www.odot.org/hqdiv/p-r-div/maps/shp-files/
 
 数据：
 
-OCC_injection_data：注射数据
+OCC_injection_data：注射数据（2011-2021）
 
 Volume_BPD: 流量
 
 
 
+earthquake_data (2000-2021)
+
 HydraulicFracturingData：水力压裂数据
 
 
 
-Well Workbook_Header
+Well Workbook_Header（1950-2021）
 
 Surface Latitude
 
 Surface Longitude
+
+Depth 都可以用当孔方向垂直的时候
 
 
 
