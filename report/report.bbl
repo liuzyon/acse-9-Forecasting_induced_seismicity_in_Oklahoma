@@ -1,5 +1,11 @@
 \begin{thebibliography}{xx}
 
+\harvarditem[De~Boer et~al.]{De~Boer, Kroese, Mannor \harvardand\
+  Rubinstein}{2005}{de2005tutorial}
+De~Boer, P.-T., Kroese, D.~P., Mannor, S. \harvardand\ Rubinstein, R.~Y.
+  \harvardyearleft 2005\harvardyearright , `A tutorial on the cross-entropy
+  method', {\em Annals of operations research} {\bf 134}(1),~19--67.
+
 \harvarditem{Ellsworth}{2013}{ellsworth2013injection}
 Ellsworth, W.~L.  \harvardyearleft 2013\harvardyearright , `Injection-induced
   earthquakes', {\em Science} {\bf 341}(6142).
@@ -17,11 +23,22 @@ Hough, S., Tsai, V., Walker, R. \harvardand\ Aminzadeh, F.  \harvardyearleft
   earthquake induced (or triggered)?', {\em Journal of Seismology} {\bf
   21},~1613 -- 1621.
 
+\harvarditem[Howard et~al.]{Howard, Christopher, Dane \harvardand\
+  Josh}{2007}{epsg}
+Howard, B., Christopher, S., Dane, S. \harvardand\ Josh, L.  \harvardyearleft
+  2007\harvardyearright , `epsg projection 4326 - wgs 84'.
+\newline\harvardurl{https://spatialreference.org/ref/epsg/wgs-84/}
+
 \harvarditem{Norbeck \harvardand\ Rubinstein}{2018}{norbeck2018hydromechanical}
 Norbeck, J. \harvardand\ Rubinstein, J.~L.  \harvardyearleft
   2018\harvardyearright , `Hydromechanical earthquake nucleation model
   forecasts onset, peak, and falling rates of induced seismicity in oklahoma
   and kansas', {\em Geophysical Research Letters} {\bf 45}(7),~2963--2975.
+
+\harvarditem{OklahomaCorporationCommission}{2021}{OklahomaCorporationCommission}
+OklahomaCorporationCommission  \harvardyearleft 2021\harvardyearright , `Oil
+  and gas data files'.
+\newline\harvardurl{https://spatialreference.org/ref/epsg/wgs-84/}
 
 \harvarditem[Paszke et~al.]{Paszke, Gross, Massa, Lerer, Bradbury, Chanan,
   Killeen, Lin, Gimelshein, Antiga et~al.}{2019}{paszke2019pytorch}
@@ -34,6 +51,11 @@ Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., Killeen,
 \harvarditem{Patel}{2018}{patel2018two}
 Patel, M.  \harvardyearleft 2018\harvardyearright , `When two trends fuse:
   Pytorch and recommender systems'.
+
+\harvarditem{Patro \harvardand\ Sahu}{2015}{patro2015normalization}
+Patro, S. \harvardand\ Sahu, K.~K.  \harvardyearleft 2015\harvardyearright ,
+  `Normalization: A preprocessing stage', {\em arXiv preprint arXiv:1503.06462}
+  .
 
 \harvarditem{PyTorch}{2021}{PyTorch}
 PyTorch  \harvardyearleft 2021\harvardyearright , `Stepwise regression tutorial
@@ -50,6 +72,13 @@ Ryan, K.  \harvardyearleft 2020\harvardyearright , `Stepwise regression
 Sundararajan, M., Taly, A. \harvardand\ Yan, Q.  \harvardyearleft
   2017\harvardyearright , Axiomatic attribution for deep networks, {\em in}
   `International Conference on Machine Learning', PMLR, pp.~3319--3328.
+
+\harvarditem[Walter et~al.]{Walter, Ogwari, Thiel, Ferrer, Woelfel, Chang,
+  Darold \harvardand\ Holland}{2020}{walter2020oklahoma}
+Walter, J.~I., Ogwari, P., Thiel, A., Ferrer, F., Woelfel, I., Chang, J.~C.,
+  Darold, A.~P. \harvardand\ Holland, A.~A.  \harvardyearleft
+  2020\harvardyearright , `The oklahoma geological survey statewide seismic
+  network', {\em Seismological Research Letters} {\bf 91}(2A),~611--621.
 
 \harvarditem{Wozniakowska \harvardand\ Eaton}{2020}{wozniakowska2020machine}
 Wozniakowska, P. \harvardand\ Eaton, D.~W.  \harvardyearleft
