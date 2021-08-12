@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex report"] 1628784510 "report.aux" "report.bbl" "report" 1628784534
+["bibtex report"] 1628784510 "report.aux" "report.bbl" "report" 1628786314
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/harvard/agsm.bst" 1480098435 25549 e3d0f1ab4ae55e777f7352db30e2c6f7 ""
   "references.bib" 1628684170 5022 b03a88b72aa43bfab873857e882006d4 ""
-  "report.aux" 1628784532 6995 db1e61088002ebb3e72cd18284cef65e ""
+  "report.aux" 1628786314 6995 db1e61088002ebb3e72cd18284cef65e ""
   (generated)
   "report.blg"
   "report.bbl"
-["pdflatex"] 1628784510 "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.tex" "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.pdf" "report" 1628784534
-  "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.aux" 1628784532 6995 db1e61088002ebb3e72cd18284cef65e ""
-  "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.tex" 1628784488 49339 ca6e12ca7bcc28cf0355195adfad2006 ""
+["pdflatex"] 1628786300 "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.tex" "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.pdf" "report" 1628786314
+  "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.aux" 1628786314 6995 db1e61088002ebb3e72cd18284cef65e ""
+  "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.tex" 1628786299 49339 ca6e12ca7bcc28cf0355195adfad2006 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1480098668 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1480098668 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
   "/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1480098668 2840 216e6e45ad352e2456e1149f28885bee ""
@@ -148,7 +148,7 @@
   "figures/feature_importance.png" 1627554046 83724 7eb25f38300e85050e2a328b0cd3a777 ""
   "figures/heatmap_all.png" 1628171583 137492 79f6a4c01c45bbbebfe7801cfb40b46f ""
   "figures/logistic_coefficients.png" 1628784344 85088 cdd0cb77e84185973d44c226df407fb5 ""
-  "figures/mapping_comparison.png" 1628783588 293098 53a02d5dceca0cded5f3f70c1b0519b4 ""
+  "figures/mapping_comparison.png" 1628786212 691253 3e9d66e3543bce86f09fa57026574e98 ""
   "figures/neural_network_exmaple.png" 1627721453 584249 e04f39988280be80f9f1761df874ffc3 ""
   "figures/neural_network_model.png" 1628415219 167972 8202ab3d2d8082c36bda9f94e6ffe4f5 ""
   "figures/neural_network_result.png" 1628343277 1197105 b4e83616f52377cfff001ce9489f288c ""
@@ -157,14 +157,14 @@
   "figures/target_mapping.png" 1628012042 3798253 383bd3cddca3ce6768a25499f93471bb ""
   "figures/training_process.png" 1628586573 302003 493464a6f324ef1343acef8d03a0851e ""
   "report-template.cls" 1623707100 2801 bd8b85402f39e0e024e8f010118b4d46 ""
-  "report.aux" 1628784532 6995 db1e61088002ebb3e72cd18284cef65e ""
+  "report.aux" 1628786314 6995 db1e61088002ebb3e72cd18284cef65e ""
   "report.bbl" 1628784510 4500 6fef55807275d4d4ae71923c39cf3cf0 "bibtex report"
-  "report.tex" 1628784488 49339 ca6e12ca7bcc28cf0355195adfad2006 ""
-  "report.toc" 1628784532 1660 df9f5ae9499e3b05e4238b68222146dd ""
+  "report.tex" 1628786299 49339 ca6e12ca7bcc28cf0355195adfad2006 ""
+  "report.toc" 1628786314 1660 df9f5ae9499e3b05e4238b68222146dd ""
   (generated)
-  "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.log"
-  "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.pdf"
-  "report.pdf"
   "report.aux"
-  "report.log"
   "report.toc"
+  "report.pdf"
+  "report.log"
+  "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.pdf"
+  "/Users/zhiyongliu/Desktop/acse-9-Forecasting_induced_seismicity_in_Oklahoma/report/report.log"
