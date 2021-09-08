@@ -12,6 +12,8 @@
 \usepackage{appendix}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage[section]{placeins}
+\usepackage{float}
 
 % \def\LOGO{%
 % \begin{picture}(0,0)\unitlength=1cm
@@ -76,7 +78,7 @@
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries Forecasting induced seismicity in Oklahoma}\\[0.4cm] % Title of your document
+{ \huge \bfseries Forecasting Induced Seismicity in Oklahoma}\\[0.4cm] % Title of your document
 \HRule \\[1.5cm]
 %----------------------------------------------------------------------------------------
 %	AUTHOR SECTION
@@ -87,7 +89,7 @@
     \emph{Author:}\\
     Zhiyong \textsc{Liu}\\ % Your name
     zl1220@ic.ac.uk\\
-    Github: acse-liuzyon
+    GitHub: acse-liuzyon
     \end{flushleft}
     \end{minipage}
     ~
@@ -103,7 +105,7 @@
 %	LOGO SECTION
 %----------------------------------------------------------------------------------------
 
-\includegraphics[width=0.3\textwidth]{school.png}\\[3cm] % Include a department/university logo - this will require the graphicx package
+\includegraphics[width=0.4\textwidth]{school.png}\\[3cm] % Include a department/university logo - this will require the graphicx package
  
 %----------------------------------------------------------------------------------------
 
@@ -128,206 +130,622 @@
 % Abstract
 \section*{Abstract}
 \addcontentsline{toc}{section}{Abstract}
-Human activities can cause minor earthquakes, which changes the stresses and strains on the earth's crust.
-These earthquakes are called induced earthquakes and most have a low magnitude. 
-Multi-year research by the United States Geological Survey (USGS) published in 2015 showed that most of large earthquakes occured in Oklahoma may have been caused by deep injection of wastewater from the oil industry.
-In this project, a unique and rich dataset of industrial activities from regions in Oklahoma are used and correlations between these activities and seismicity are confirmed.
-With existing high-quality earthquake catalogues in these regions, possible signatures of human-induced seismicity are retrospectively forecasted through machine learning techniques. 
-At the end of the project, a working forecasting model is generated and tested the permormance by the test dataset splitted from total dataset.
+Human activities can cause minor earthquakes, which are called induced earthquakes and most have a low magnitude. 
+% Multi-year research by the United States Geological Survey (USGS) published in 2015 showed that most of large earthquakes occurred in Oklahoma may have been caused by injection of wastewater by industries.
+In this project, a unique and rich dataset of industrial activities from regions combined with geological formation in Oklahoma are used and correlations between these factors and seismicity are confirmed.
+With existing high-quality earthquake catalogues in these regions, statistically significant factors were selected by stepwise regression approach for models input.
+A logistic regression model and a neural network model are generated to retrospectively forecast the seismicity. The performances about them are compared in various measures which denote neural network model has a better predicted ability and can be used in practice.
+The depth to basement is founded mostly contributed to the seismicity.
 
-\textbf{Key Words:} induced earthquakes, machine learning method, forecasting model
+
+\textbf{Key Words:} induced earthquakes, forecasting model, main factors for seismicity, machine learning methods.
 \newpage
 
 % Introduction section
 \section{Introduction}
-It is well known that humans can cause earthquakes through fluid injection and extraction. Ellsworth stated the understanding of the causes and mechanics of human-induced earthquakes. It includes wastewater injection, emerging oil and gas recovery technologies, and other indirect induced activities,
-including deep fluid injection \citep{ellsworth2013injection}.
-Norbeck and Rubinstein genreated a model based on fluid flow and seismic physics, which associate the past injection trends with the seismicity patterns \citep{norbeck2018hydromechanical}.
+It is well known that humans can cause earthquakes through fluid injection and extraction. \citep{ellsworth2013injection} stated the understanding of the causes and mechanics of human-induced earthquakes. It includes wastewater injection, emerging oil and gas recovery technologies, and other indirect induced activities.
 Such cases of induced seismicity have been recorded and proven in Oklahoma, where seismicity has been increased dramatically since 2010.
 In cases like Oklahoma, because the rate of earthquakes was very low before high-rate wastewater injection, it is relatively easy to determine the fundamental causes of induced seismicity.
-Therefore, due to the low background stress in intraplate regions, the human triggering signatures are clearly identifiable.
-However, in tectonically-active areas, it is more challenging to distinfuish between natural and triggered seismicity.
+However, in tectonically-active areas, it is more challenging to distinguish between natural and triggered seismicity.
 In tectonically active regions in the US, such as California, although oil and gas extraction has taken place for many decades, only a handful of studies have been published with a focus on these areas \citep{Hough2017WasTM}. 
-Big-data and statistical approaches will be crucial in separating natural causes from potential human triggering factors in these areas.
-In regions from Oklahoma, Hincks et al. developed a Bayesian network to for quantitative evaulation of correlations between well operational parameters, geological formation, and seismicity.
-The injection depth relative to crystalline basement was found to be the most significant parameter for seismic moment release \citep{hincks2018oklahoma}.
-Also, Wozniakowska and Eaton performed a machine learning estimation of the seismogenic activation potential for each well using logistic regression and also found that the injection depth influence greatly the seismogenic activation potential \citep{wozniakowska2020machine}.
+Large-scale big-data and statistical approaches is one method to predict the locations where human triggered seismicity may be expected \citep{hincks2018oklahoma}.
 
-The correlations of induced earthquakes with fluid injection activities are well established, even in previous research some physics models are also developed for earthquake prediction.
-It is still not known why some areas are more susceptible to induced earthquakes.
-In this project, Several unique and rich datasets of industrial activities from regions in Oklahoma are used to statistically evaluate and retropectively forecast possible signatures of human-induced seismicity from existing high-quality earthquake in these regions. 
-These datasets contains geological formation, injections, hydraulic fracturing activities and wells, which all have millions of items.
-They were selected subset from 2011 to 2018 and displayed on the local map of Oklahoma. Rough visual correlations between the earthquakes and these potential induced factors were discovered.
-Then, stepwise regression method was used to choose statistically significant features from all features. A logistic model was fitted before and after stepwise regression, which proved that the work of features selection indeed benefit to induced forecasting. 
+To move onto an area with complex tectonic factors like California, we will use a less complicated testing environment to develop our big-data statistical approaches, like Oklahoma.
+In this project, several unique and rich datasets of candidate factors from regions in Oklahoma are used to statistically evaluate and retrospectively forecast possible signatures of human-induced seismicity from existing high-quality earthquake in these regions. 
+These datasets contain geological formation, injections, hydraulic fracturing activities and wells, each of which have millions of items.
+In previous studies about induced earthquakes in Oklahoma, for instance, \citep{norbeck2018hydromechanical} associated the past injection trends with the seismicity patterns based on fluid flow and seismic physics to generate physical prediction models.
+This project originally designed and implemented a feedforward neural network (FNN or NN) for induced seismicity forecasting, which effectively improves the performance of model fitting and prediction compared with logistic regression model (LR) also common-used in previous studies.
+The superiority of our NN model was proven and their results about major factors to seismicity by two models were compared.
 
-In previous studies for induced earthquakes in Oklahoma, forecasting works were almost always implemented using regression models. Compared to them, after selecting statistically significant features, this project originally designed and implemented a neural network for induced seismicity forecasting, which effectively improves the performance of model fitting and prediction. 
+The detail introduction of geological visualization, feature selection and NN model will be delivered in Section~\ref{sec:software_description}. Section~\ref{sec:code_metadata} will describe metadata of code, including data files, code repository and dependencies.
+Implementation about this project will be demonstrated in Section~\ref{sec:Implementation}. The results of models (LR and NN) and comparison as well as feature attribution will be stated in Section~\ref{sec:results}.
+Finally, a conclusion of the project and future works will be presented in Section~\ref{sec:conclusion}. 
+
+
+
 
 % Another section
 \section{Software Description}
-\subsection{Visualization: Matplotlib \& GeoPandas}
-GeoPandas can help researcher make working with geospatial data in Python easier. It extends the datatypes in Pandas, which allows users perform spatial operations on geometric types.
-Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.
-Combining these two libraries, after setting the appropriate coordinate system, the data items can be mapped in spatial clearly by short code.
-Figure~\ref{fig:earthquake_plot} shows all earthquakes recorded in the dataset. The red rectangule is the interest area to study for this project.
-Here we only concentrate on the earthquakes which have a magnitude greater than 2.0.
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.8\textwidth]{earthquake_plot.png}
-    \end{center}
-    \caption{\label{fig:earthquake_plot} Earthquake Occurrences in Oklahoma.}
-\end{figure}
+\label{sec:software_description}
+% \subsection{Visualization: Matplotlib \& GeoPandas}
+% GeoPandas \citep{jordahl2014geopandas} can make it easier researcher to process geospatial data in Python. It extends the datatypes in Pandas, which allows users to do spatial operations on geometric data.
+% Matplotlib \citep{Hunter:2007} is a comprehensive library,  its main functions contain creating static, animated, and interactive visualizations for data in Python.
+% Combining these two libraries, after setting the appropriate coordinate system, the data items can be mapped in spatial clearly by short code.
 
-\subsection{Stepwise Regression}
+\subsection{Feature Selection: Stepwise Regression}
 \label{sec:stepwise}
-In any phenomenon, some factors will play a more important role in determining the outcome. Stepwise Regression is method which is widely used to find which factors are important and which are not. 
-The factors that have a rather high p-value do not make a meaningful contribution to the accuracy of our predictions. 
-Therefore, only the important factors are retained to ensure that the model make predictions based on the factors that will help it produce the most accurate results.
+Stepwise Regression method is widely used to find which factors are important and which are not.
+P-value is often used in stepwise regression to see if the patterns they measured were statistically significant. If the p-value of a statistical test is small enough, we are able to reject the null hypothesis of the test and the pattern measured is statistically significant.
+The most common threshold for p is 0.05 \citep{ioannidis2018proposal}. For the variable whose p-value is greater than 0.05, we can assume that it is not statistically significant as shown in Appendix Fig~\ref{fig:p-value}.
 
-P-values are often used to see if the patterns they measured were statistically significant. If the p-value of a statistical test is small enough, we are able to reject the null hpytothesis of the test and the pattern measured is statistically significant.
-The most common threshold for p is 0.05. For the variable whose p-value is greater than 0.05, we can assume that it is not statistically significant as shown in Fig~\ref{fig:p-value}. Here is step in stepwise logistic regression process.
-The `injection\_vol', `HF\_Base\_Water\_Volume', `HF\_Base\_NoWater\_Volume' both have a p-value than threshold 0.05 in logistic regression results, which are not statistically significant and should be eliminated in later process.
+In the construction of regression model, there usually exists a problem of high multicollinearity.
+A little multicollinearity is not necessarily a serious problem that can be tolerated, but severe multicollinearity is a problem. Because it increases the variance of the regression coefficients which makes them unstable and difficult to interpret themselves.
+A VIF between 5 and 10 means problematic and if the VIF is larger than 10, it is likely to poorly estimated the regression coefficients.
 
-In the process of regression analysis, there usually exists the problem of high collinearity, which can cause the following influence:
-\begin{itemize}
-    \item The model parameters are estimated inaccurately, and sometimes even the sign of the regression coefficients is exactly opposite to the actual situation, for example, the characteristic coefficients that should logically have positive coefficients are calculated to be negative.
-    \item The independent variables that should be significant are not significant, and the independent variables that are not significant show the significance.
-\end{itemize}
-
-VIF.(required continue)
-
+Considering both p-value and VIF, we used a forward stepwise logistic regression combined with VIF checking algorithm introduced in Algorithm~\ref{alg:cap}.
 
 \begin{algorithm}
-    \caption{An algorithm with caption}\label{alg:cap}
+    \caption{Stepwise logistic regression with VIF checking}\label{alg:cap}
     \begin{algorithmic}
-    \Require $n \geq 0$
-    \Ensure $y = x^n$
-    \State $y \gets 1$
-    \State $X \gets x$
-    \State $N \gets n$
-    \While{$N \neq 0$}
-    \If{$N$ is even}
-        \State $X \gets X \times X$
-        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-    \ElsIf{$N$ is odd}
-        \State $y \gets y \times X$
-        \State $N \gets N - 1$
-    \EndIf
+    \Procedure{SLR}{$candidate\_features$}
+    \State $P\_THRESHOLD \gets 0.05$
+    \State $VIF\_THRESHOLD \gets 5$
+    \State $X \gets candidate\_features$
+    \State $result \gets$ [ ]
+    \For{\texttt{$feature$ in $X$}}
+    \State $result.append(feature)$
+    \State generate model with $result$
+    \While{there exist some feature $N$ which $N.p\_value$ is greater than $P\_THRESHOLD$}
+    \State eliminate feature with max $p\_value$ in $result$
+    \State generate model with $result$
     \EndWhile
+
+    \While{there exist some feature $N$ which $N.VIF$ is greater than $VIF\_THRESHOLD$}
+    \State eliminate feature with max $VIF$ in $result$
+    \State generate model with $result$
+    \EndWhile
+    \EndFor
+    \EndProcedure
     \end{algorithmic}
     \end{algorithm}
 
-In this project, we performed a stepwise logistic regression that used a forward selection approach on all interest potential factors \citep{Ryan}.
-All features were initially excluded and a feature is added in each step whilst keping current features satisfy p-value \textless 0.05. 
-This process continued untill all features kept are statistically significant. Meanwhile, in each step, we also remains the VIF \textless 10 for current kept features even some new added feature required to be eliminated.
+% All features are initially excluded and a feature is added in each step whilst keeping current features satisfy p-value \textless 0.05. 
+% This process continues until all features kept are statistically significant. Meanwhile, in each step, we also remain the VIF \textless 5 for current kept features even some new added feature is required to be eliminated. 
 
-\subsection{Neural Network Construction: Pytorch}
-Pytorch is an open source machine learning library for Python and is completely based on Torch library,
-used for applications such as computer vision and natural language processing. It is mostly developed by Facebook's AI Research lab (FAIR) \citep{patel2018two}. 
-PyTorch provides two features:
-\begin{itemize}
-    \item Tensor computing (like Numpy) with strong acceleration via graphics processing units (GPU)
-    \item Deep neural networks built on a type-based automatic differentiation system.
-  \end{itemize}
-Pytorch provides a class called Tensor (torch.Tensor) to store and operate on homogeneous multidimensional rectangular arrays of numbers. 
-They are tailored for datasets in machine learning. Tensors in Pytorch are similar to Numpy Arrays, but it supports to be operated on a CUDA-capable Nvidia GPU \citep{paszke2019pytorch}.
+\subsection{Neural Network Construction: PyTorch} 
+% Because logistic regression is so simple that it is difficult to model for nonlinear data or data with polynomial correlation, it is hard to deal with the complicated problem. 
+% However, Neural network model has the ability to capture information in big-data and build incredibly complex models. 
+% With the abilities of self-learning and high-speed for optimal solution, it easily achieves a higher performance compared with regression method.
 
-To define a neural network in Pytorch, it is pretty convenient to create a class that inherits from nn.Module as below:
-\begin{lstlisting}[language=Python]
-    # Get cpu or gpu device for training.
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    print("Using {} device".format(device))
+PyTorch \citep{PyTorch} is a machine learning library for neural network in Python. 
+It is open-source used for applications in natural language processing (NLP) and computer vision.
+To define a neural network in PyTorch, it is pretty convenient to create a class that inherits from \textit{nn.Modules} within several rows of code. 
+In the created class, user can define the layers of the network in the \textit{\_\_init\_\_} function and indicates how data will pass through the network in the \textit{forward} function. 
+
+% Facebook's AI Research lab (FAIR) \citep{patel2018two} mostly developed it and recommended it with two features:
+% \begin{itemize}
+%     \item Accelerated computing for Tensors (like Numpy) via GPU.
+%     \item Provide neural networks which are built on a system supportring automatic differentiation.
+%   \end{itemize}
+% Pytorch provides a class called Tensor (\textit{torch.Tensor}) to store and manipulate numerical homogeneous multidimensional rectangular arrays. 
+% They are tailor-made for datasets in machine learning. Pytorch Tensors are similar to NumPy Arrays, but it supports to be manipulated on a CUDA-capable Nvidia GPU \citep{paszke2019pytorch} for acceleration.
+
+% Figure~\ref{fig:neural_network_example} is the model created above trained on the playground online through TensorFlow. 
+
+% \begin{lstlisting}[language=Python]    
+%     # Define NN model
+%     class NeuralNetwork(nn.Module):
+%         def __init__(self):
+%             super(NeuralNetwork, self).__init__()
+%             self.flatten = nn.Flatten()
+%             self.linear_relu_stack = nn.Sequential(
+%                 nn.Linear(4, 8),
+%                 nn.ReLU(),
+%                 nn.Linear(8, 8),
+%                 nn.ReLU(),
+%                 nn.Linear(8, 2),
+%                 nn.ReLU()
+%             )
     
-    # Define model
-    class NeuralNetwork(nn.Module):
-        def __init__(self):
-            super(NeuralNetwork, self).__init__()
-            self.flatten = nn.Flatten()
-            self.linear_relu_stack = nn.Sequential(
-                nn.Linear(4, 8),
-                nn.ReLU(),
-                nn.Linear(8, 8),
-                nn.ReLU(),
-                nn.Linear(8, 2),
-                nn.ReLU()
-            )
+%         def forward(self, x):
+%             x = self.flatten(x)
+%             logits = self.linear_relu_stack(x)
+%             return logits
     
-        def forward(self, x):
-            x = self.flatten(x)
-            logits = self.linear_relu_stack(x)
-            return logits
-    
-    model = NeuralNetwork().to(device)
-\end{lstlisting}
-User can define the layers of the network in the \textit{\_\_init\_\_} function and indicates how data will pass through the network in the \textit{forward} function. 
-With Pytorch, user can move it to the GPU to accelate operations in the neural netwok if available. Figure~\ref{fig:neural_network_example} is the model created above trained on the playground online through Tensorflow. 
-The neural network prediction model used in this project is implemented by this way.
+%     model = NeuralNetwork().to(device)
+% \end{lstlisting}
 
 \subsection{Feature Attribution: Captum}
-Feature attribution is the technique to investgiate how much each feature in the model contributes to the prediction for given dataset fitting. 
-With the increase in model complexity and the resulting lack of transparency, model interpretability methods have become increasingly important in machine learning field.
-In this project, we implemented a neural network model with the PyTorch library \citep{PyTorch} for improving the accuracy of prediction. Therefore, we use the Captum for feature attribution in neural network model, which is a model interpretability and understanding library for Pytorch.
-It includes general purpose implementations of integrated gradients, saliency maps, smoothgrad, vargrad and others for PyTorch models.
+Feature attribution is the technique to investigate how much each feature in the model contributes to the prediction for given dataset fitting. 
+Because models in machine learning are more complicated and lack of transparency, the interpretability approaches for these models have becoming increasingly important.
+Captum is an interpretability and understanding library for models in PyTorch.
+It provides a lot of advanced algorithms, including Integrated gradients \citep{sundararajan2017axiomatic},  DeepLIFT \citep{shrikumar2017learning}, Feature Ablation and Gradient SHAP \citep{lundberg2017unified} used in this project. 
+These Captum provide users a convenient way to know about the contributions of features to a models' output through these algorithms.
+% \subsubsection{Integrated Gradients}
+% Integrated gradients \citep{sundararajan2017axiomatic} represent the integral of gradients with respect to inputs along the path from a given baseline to input. The integral can be approximated using a Riemann Sum or Gauss Legendre quadrature rule. Formally, it can be described as follows in Equation \eqref{equ:inreGrad}:
 
-Captum provides advanced algorithms, including Intergarated gradientes used in this project, to provides users an simple way to understand which features are contributing to a models' output.
-Integrated gradients represents the integral of gradients with respect to inputs along the path from a given baseline to input. The integral can be approximated using a Riemann Sum or Gauss Legendre quadrature rule. Formally, it can be described as follows in Equation \eqref{equ:inreGrad}:
+% \begin{equation}
+%     IntegratedGrads_{i}(x) ::= (x_{i} - x_{i}^{'}) \times   \int_{\alpha=0}^1 \frac{\partial F(x^{'}+\alpha \times (x-x^{'}))}{\partial x_{i}} d\alpha  \label{equ:inreGrad}    
+% \end{equation}
+
+% Integrated Gradients along the i-th dimension of input X. Alpha is the scaling coefficient.
+% The cornerstones of this approach are two fundamental axioms, namely sensitivity and implementation invariance.
+
+% \subsubsection{Gradient SHAP}
+% Gradient SHAP \citep{lundberg2017unified} is a gradient method to compute SHAP values, which are based Shapley values proposed in cooperative game theory. Gradient SHAP adds Gaussian noise to each input sample multiple times, selects a random point along the path between baseline and input, and computes the gradient of the outputs with respect to those selected random points. 
+% The final SHAP values represent the expected value of gradients $\times$ (inputs - baselines).
+% The computed attributions approximate SHAP values under the assumptions that the input features are independent and that the explanation model is linear between the inputs and given baselines.
+
+% \subsubsection{DeepLIFT}
+% DeepLIFT \citep{shrikumar2017learning} is a back-propagation based approach that attributes a change to inputs based on the differences between the inputs and corresponding references (or baselines) for non-linear activations.
+% As such, DeepLIFT seeks to explain the difference in the output from reference in terms of the difference in inputs from reference.
+% DeepLIFT uses the concept of multipliers to "blame" specific neurons for the difference in output. The definition of a multiplier is as follows:
+
+% \begin{equation}
+%     m \Delta x \Delta t = \frac{C \Delta x \Delta t}{\Delta x}  \label{equ:DeepLIFT}    
+% \end{equation}
+% x is the input neuron with a difference from reference $\Delta x$, and t is the target neuron with a difference from reference $\Delta t$. C is then the contribution of $\Delta x$ to $\Delta t$.
+
+% \subsubsection{Feature Ablation}
+% Feature ablation is a perturbation-based approach to compute attribution, involving replacing each input feature with a given baseline / reference value (e.g. 0), and computing the difference in output. 
+% Input features can also be grouped and ablated together rather than individually. This can be used in a variety of applications. 
+% For example, for images, one can group an entire segment or region and ablate it together, measuring the importance of the segment (feature group).
+
+\subsection{Model Evaluation Measures}
+\label{sec:model_evaluate_measures}
+The measures we used for model evaluation will be introduced in this section. 
+These measures contain accuracy, confusion matrix, precision, recall, F1 score, ROC curve and AUC value.
+
+\subsubsection{Accuracy, Precision, Recall and F1 Score}
+\label{sec:APRF}
+In confusion matrix, it has four cells which represents TN, FN, FP, TP.
+The meanings of these four types are listed below:
+\begin{itemize}
+    \item TN: Prediction is 0 and true is 0. 
+    \item FN: Prediction 0 but true is 1. 
+    \item FP: Prediction is 1 but true is 0.
+    \item TP: Prediction is 1 and true is 1.
+\end{itemize}
+
+The accuracy, precision, recall, F1 score are calculated based on the four types in confusion matrix.
+According to the confusion matrix, they can be calculating by Equation \eqref{equ:accuracy}\eqref{equ:precision}\eqref{equ:recall}\eqref{equ:F1}.
 
 \begin{equation}
-    IntegratedGrads_{i}(x) ::= (x_{i} - x_{i}^{'}) \times 	\int_{\alpha=0}^1 \frac{\partial F(x^{'}+\alpha \times (x-x^{'}))}{\partial x_{i}} d\alpha  \label{equ:inreGrad}    
+    Accuracy ::= \frac{TN + TP}{TN+FN+FP+TP}  \label{equ:accuracy}    
 \end{equation}
 
-Intergarated Gradients along the i-th dimension of input X. Alpha is the scaling coffecient \citep{sundararajan2017axiomatic}.
+\begin{equation}
+    Precision ::= \frac{TP}{TP+FP}  \label{equ:precision}    
+\end{equation}
 
-As shown in Fig~\ref{fig:feature_importance}, this is the result of feature importance analysis for the model trained in official tutorial of Captum.
-The official tutorial used an example model trained on the titanic survival data. 
-It first trained a deep neural network on the data using Pytorch and used Captum to understand which of the features were most important and how the network reached its prediction.
-The features involved Age, Sibsp, Parch, Fare, Gender, Embark, Class and the target is a binary indicating whether passager is survived. After normalization and one-hot encodings, the neural network architecture was defined and trained. 
-The neural network had a simple architecture using 2 hidden layers, the first with 12 hidden units and the second with 8 hidden units, each with Sigmoid non-linearity.
-The final layer performed a softmax operation and had 2 units, corresponding to the outputs of either survived or not survived. The accuracy of this model on dataset achieved to $81.6\%$. To perform feature attribution on this model, this example applied integrated Gradients, which is one of the Feature Attribution methods included in Captum. The feature attribution method code is shown in below.
+\begin{equation}
+    Recall ::= \frac{TP}{TP+FN}  \label{equ:recall}    
+\end{equation}
 
-\begin{lstlisting}[language=Python]
-    ig = IntegratedGradients(model)
-    test_input_tensor.requires_grad_()
-    attr, delta = ig.attribute(test_input_tensor,target=1, return_convergence_delta=True)
-    attr = attr.detach().numpy()
+\begin{equation}
+    F1 ::= 2 \times \frac{Precision \times Recall}{Precision+Recall}  \label{equ:F1}    
+\end{equation}
 
-    # Helper method to print importances and visualize distribution
-    def visualize_importances(feature_names, importances, title="Average Feature Importances", plot=True, axis_title="Features"):
-        print(title)
-        for i in range(len(feature_names)):
-            print(feature_names[i], ": ", '%.3f'%(importances[i]))
-        x_pos = (np.arange(len(feature_names)))
-        if plot:
-            plt.figure(figsize=(12,6))
-            plt.bar(x_pos, importances, align='center')
-            plt.xticks(x_pos, feature_names, wrap=True)
-            plt.xlabel(axis_title)
-            plt.title(title)
-    visualize_importances(feature_names, np.mean(attr, axis=0))
-\end{lstlisting}
+The accuracy is a common measure in model evaluation, and it is an intuitive representation of whether the model is capable of making accurate predictions.
+However, it is easily affected by the imbalance of the samples. For example, there are a total of 100 samples and 90 of them are positive samples.
+If the model predicts all samples to positive sample, the accuracy can reach up to 90\%, but such a model is meaningless obviously.  
 
-The result of feature attribution was listed in Table~\ref{tab:feature_importance} and shown in Fig~\ref{fig:feature_importance}.
-From the feature attribution information, we obtain some interesting insights regarding the importance of various features. We see that the strongest features appear to be age and being male, which are negatively correlated with survival. Embarking at Queenstown and the number of parents / children appear to be less important features generally.
+Precision states from the perspective of prediction results, it describes how many of the positive predictions predicted by the binary classifier are accurate. 
+Recall states from the perspective of real results, it describes how many real positive samples are recalled by the binary classifier.
+Precision and Recall are contradictory with each other. Generally, recall tends to be low when precision is high.
+For earthquake prediction, we focus more on seismic samples rather non seismic samples. 
+Therefore, we have two expectations:
+\begin{itemize}
+    \item we want a high precision because it means more predictions in seismic predictions are correct.  
+    \item we want a high recall because it means more actual seismic samples are selected out by the model.
+    
+    Note: Seismic prediction here refers to the prediction whose result is a seismic area.
+\end{itemize}
 
-\begin{table}[]
-    \centering
-    \caption{Average Feature Importances for each feature}
-    \label{tab:feature_importance}
-    \resizebox{\textwidth}{6mm}{
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
-    \hline
-    age    & sibsp  & parch  & fare  & male   & embark\_C & embark\_Q & embark\_S & class\_1 & class\_2 & class\_3 \\ \hline
-    -0.454 & -0.119 & -0.056 & 0.175 & -0.359 & 0.086     & -0.001    & -0.082    & 0.062    & 0.021    & -0.159   \\ \hline
-    \end{tabular}}
-    \end{table}
+In order to take these two expectations into consideration, we introduced F1 score, which is the harmonic mean \citep{chhikara1988inverse} of precision and recall.
+If the F1 score is high, it means model highly meet both expectations.
+
+\subsubsection{ROC Curve and AUC Value}
+
+\begin{equation}
+    FPR ::= \frac{FP}{N} = \frac{FP}{FP+TN}  \label{equ:FPR}    
+\end{equation}
+
+\begin{equation}
+    TPR ::= \frac{TP}{P} = \frac{TP}{TP+FN}  \label{equ:TPR}    
+\end{equation}
+
+We also used the Receiver Operating Characteristic Curve (ROC) to evaluate LR model and NN model. 
+The ROC curve is drawn by a series of different dichotomies (dividing values or determining thresholds). 
+The abscissa represents the false positive rate FPR (1-specificity) shown in Equation \eqref{equ:FPR} and the ordinate represents the true positive rate TPR (sensitivity) shown in Equation \eqref{equ:TPR}. 
+
+ROC has the superiority of independence of class distribution, which is suitable for evaluation with unbalanced datasets.
+We can see why it has this advantage from their equations. 
+TRP used TP and FN, which both belongs to second row in confusion matrix. It only concentrates on positive samples (P, which was represented by the second row in confusion matrix). 
+FRP used FP and TN, which both belongs to first row in confusion matrix. It only concentrates on negative samples (N, which was represented by the first row in confusion matrix). Therefore, even if the number of P or N changes, they do not affect each other.
+That is to say, even if the ratio of positive to negative samples changes greatly, the ROC curve does not change greatly. However, this is not a feature of the previous measures in Table~\ref{tab:Indicators_by_confusion_matrix}. 
+The performance of the classification model can also be represented intuitively by the area under the ROC curve (AUC). AUC ranges in value from 0 to 1. A model has an AUC of 0.0 if its predictions are 100\% wrong; In reverse, if it is 100\% accurate, it has an AUC of 1.0.
 
 \section{Code Metadata}
+\label{sec:code_metadata}
 This project was built under macOS Catalina environment with Jupyter Notebook 6.0.3 and Python 3.7.6.
 The information of libraries and their usages are listed in Table~\ref{tab:library_dependency}.
 
-In the Github repository, source code files (\textit{.ipynb}) are stored in the src directory, including two main parts, which are feature extraction and prediction model.
-The data files (\textit{.csv}) generated from feature extraction part are located at \textit{data} directory. The models (\textit{.pt}) generated from prediction part are located at the \textit{model} directory.
+In the GitHub repository, source code files (\textit{.ipynb}) are stored in the \textit{src} directory, including two main parts, which are feature extraction and prediction model. An additional file \textit{visualization.ipynb} is used for some figures in this report.
+The dataset files (\textit{.csv}) generated from feature extraction part are located at \textit{data} directory. The models (\textit{.pt}) generated from prediction part are located at the \textit{model} directory.
 
-\begin{table}[]
+\section{Implementation}
+\label{sec:Implementation}
+
+
+\subsection{Data Processing and Spatial visualization}
+\label{sec:dpsv}
+In the initial phase of project, we imported all the available datasets (earthquake data, geological data, hydraulic fracturing data, injection data, well data).
+The metadata of earthquake dataset was exported from \textit{Oklahoma Geological Survey Earthquake Catalog Download Tool} \citep{walter2020oklahoma}.
+The metadata of injection dataset was exported from \textit{Oklahoma Corporation Commission} \citep{OklahomaCorporationCommission}.
+The metadata of hydraulic fracturing dataset was exported from \textit{FracFocus} \citep{FracFocusChemicalDisclosureRegistry}.
+
+We then preprocessed the imported datasets, which includes missing values processing and data selecting by date.
+The date of injection dataset we imported was in the range of 2011 to 2020. Because the data files \textgreater 2019 supported by the \textit{Oklahoma Corporation Commission} are still under review and corrections are being made as warranted, those files are currently incomplete and subject to change. Therefore, we only used the data between 2011 and 2018.
+Due to date limitation of injection data, we set the interest time in the period of 2011 to 2018 for all datasets.
+We set the interest area to the area whose longitude ranges in (-99.5W, -96W) and latitude ranges in (35.0N, 37.0N) shown as red box in Figure~\ref{fig:earthquake_plot}, which is an available spatial scope provided by all datasets.
+We visualized all the data by \textit{matplotlib} and \textit{geopandas} module in the interest area and date. The geodetic coordinate system we used for mapping in this project is 'EPSG:4326' \citep{epsg}, which is the most popular coordinate system. 
+The geological formation (depth to basement) along with various activities (seismicity, injections, wells, hydraulic fracturing) are shown in Fig~\ref{fig:activity}.
+
+% The core of visualization code for all dataset is similar and earthquake visualization is shown in the below code part:
+% \begin{lstlisting}[language=Python]
+%     earthquake_geometry = [Point(xy) for xy in zip(earthquake_df['longitude'], earthquake_df['latitude'])]
+    
+%     earthquake_geo_df = gpd.GeoDataFrame(earthquake_df, crs = "EPSG:4326", geometry = earthquake_geometry)
+
+%     fig, ax = plt.subplots(figsize=(20, 20), dpi=300)
+%     oklahoma_map.plot(ax=ax, alpha=0.4,color='grey')
+%     earthquake_geo_df.plot(column='magnitude',ax=ax, alpha=0.5, legend=True, markersize=10)
+
+%     plt.title('Earthquake (magnitude>=2) in Oklahoma', fontsize=15,fontweight='bold')
+%     plt.xlim(-99.5, -96.0)
+%     plt.ylim(35.0, 37.0)
+%     plt.show()
+% \end{lstlisting}
+
+\subsection{Spatial Griding and Features Extraction}
+For the interest area (longitude ranges in (-99.5W, -96W) and latitude ranges in (35.0N, 37.0N)), we divided it into $40 \times 40$ grids. 
+The size (40 $\times$ 40) of griding depended on the adequacy of generated dataset and the suitable size of the unit region.
+In this case, it generated 1600 data items for model construction and each of them has the distance of 8km in x-direction and 6 km in y-direction.
+
+Then, we counted the values of all features and target for each grid by the various data from Section~\ref{sec:dpsv} to generate the dataset.
+This dataset files were generated in \textit{.csv} and saved in \textit{data} directory.
+The features and target of this dataset is shown in Table~\ref{tab:feature_generated}.
+% \begin{itemize}
+%     \item \textit{injection\_number [entry]}: The number of injections in this grid.
+%     \item \textit{injection\_vol\_sum [BPD]}: The sum of injection volume in this grid.
+%     \item \textit{injection\_psi\_sum [PSI]}: The sum of injection pressure in this grid.
+%     \item \textit{injection\_depth\_avg [m]}: The mean of injection depth in this grid.
+%     \item \textit{injection\_above\_basement\_number [entry]}: The number of injections whose depth are shallow than the basement in this gird.
+%     \item \textit{injection\_under\_basement\_number [entry]}: The number of injections whose depth are deeper than the basement in this gird.
+%     \item \textit{injection\_close\_to\_basement\_500\_number [entry]}: The number of injections whose depth is within 500 metres of basement.
+%     \item \textit{injection\_close\_to\_basement\_1000\_number [entry]}: The number of injections whose depth is within 1000 metres of basement.
+%     \item \textit{active\_well\_number [entry]}: The number of working wells in this grid.
+%     \item \textit{well\_depth\_avg [m]}: The mean of well depth in this grid.
+%     \item \textit{well\_above\_basement\_number [entry]}: The number of working wells whose depth are shallow than the basement in this grid.
+%     \item \textit{well\_under\_basement\_number [entry]}: The number of working wells whose depth are deeper than the basement in this grid.
+%     \item \textit{well\_close\_to\_basement\_500\_number [entry]}: The number of wells whose depth is within 500 metres of basement.
+%     \item \textit{well\_close\_to\_basement\_1000\_number [entry]}: The number of wells whose depth is within 1000 metres of basement.
+%     \item \textit{depth\_to\_basement\_avg [m]}: The mean of the depth to the basement in this grid.
+%     \item \textit{hf\_number [entry]}: The number of hydraulic fracturing activities in this grid.
+%     \item \textit{hf\_base\_water\_volume\_sum [BPD]}: The sum of volume by hydraulic fracturing with water
+%     \item \textit{hf\_base\_nowater\_volume\_sum [BPD]}: The sum of volume by hydraulic fracturing with nowater
+%     \item \textit{earthquake\_occurrence [0 or 1]}: If earthquake occurred in this grid. 0: not occured; 1: occurred.
+% \end{itemize}
+
+
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{target_mapping.png}
+    \end{center}
+    \caption{\label{fig:target_mapping} Target variable of earthquake occurrence within the interest area in Oklahoma (The white lines display the gridding regions, with a spacing in the x direction of 8 km and the y direction of 5.5 km. The white points denote the earthquake occurrences.
+    The red region denotes it has seismicity in this region and blue region denotes it does not have seismicity in this region).}
+\end{figure}
+After this statistical process, we obtained a dataset in terms of spatial distribution. Each of item represents a subarea of our interest area and contains the values of various candidate features.
+The target variable is set by seismicity, which represents the seismicity in spatial distribution. We made each grid region a value of 1 if there was at least one (magnitude\textgreater2) earthquake occurred during 2011 to 2018. 
+Otherwise, if no earthquake occurred in this grid region, we assigned it a value of 0. The griding result of the earthquake occurrence (target) from 2011 to 2018 is shown in Figure~\ref{fig:target_mapping}. 
+The class distribution with whole dataset is shown in Figure~\ref{fig:class_label}. There are 920 nonseismic grid regions with label '0' and 680 seismic grid regions with label '1'.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{class_label.png}
+    \end{center}
+    \caption{\label{fig:class_label} Class label distribution in whole dataset (0: nonseismic region; 1: seismic region).}
+\end{figure}
+
+\subsection{Stepwise Feature Selection Approach}
+\label{sec:SFSA}
+As some activities were strongly overlapped in spatial distribution, they might have a high degree of multicollinearity. 
+We calculated the feature similarity on all features based on Pearson \citep{benesty2009pearson} correlation coefficients and generated a heatmap as Appendix Figure~\ref{fig:heatmap}.
+In general, we consider a high degree of collinearity between two features with a coefficient greater than 0.9, like 'active\_well\_number' and 'well\_under\_basement\_number'.
+To select statistically significant features and deal with high multicollinearity problem, we used the forward stepwise approach with VIF checking algorithm introduced in Section~\ref{sec:stepwise}. 
+After this process, we eliminated statistically insignificant features and also solved the problem of high multicollinearity between features. 
+% The result of features selecting is shown in Figure~\ref{fig:stepwise}. 
+
+\subsection{Logistic Regression Model}
+\label{sec:LRM}
+With the selected features in Section~\ref{sec:SFSA}, we constructed a multiple logistic regression model in this part, which used the features selected as independent variables and earthquake occurrence as the target variable.
+We standardized and normalized all input features by z-score normalization \citep{patro2015normalization} to reduce data skewness and bring all features on the same scale. 
+The normalization makes it feasible to interpret the relative differences of LR model coefficients.
+
+We split the dataset into train dataset and test dataset with the ratio of 4:1, which respectively have 1280 and 320 samples (Each sample is associated with one gridding region in the interest area). In the build process of LR model, we used \textit{sklearn.linear\_model.LogisticRegression} to construct and fitted our LR model with training data by \textit{fit} function.
+%  which achieved the accuracy of 72.5\% on the test dataset.
+% The core part of code is shown in below:
+% \begin{lstlisting}[language=Python]
+%     X_train,X_test,y_train,y_test = train_test_split(X,Y,train_size=0.9, random_state=42)
+%     model = LogisticRegression()
+%     model.fit(X_train,y_train)
+%     model.score(X_test,y_test)
+% \end{lstlisting}
+% After fitting the model and testing, we checked the coefficients for all input features by \textit{model.coef\_[0]} and plot them in Figure~\ref{fig:feature_attribution}. With the trained logistic regression model, we used the whole dataset to predict and compared output labels with true labels, which is shown as sub-figure(b) in Figure~\ref{fig:mapping_comparison}.
+
+\subsection{Neural Network Model}
+\label{sec:NNM}
+\subsubsection{Architecture}
+In this project, we used a neural network model which has its input layer with 7 neurons, two hidden layers of 8 neurons per layer and an output layer with 2 neurons as shown in Figure~\ref{fig:neural_network_model}. 
+In general, 1 to 5 hidden layers and same number of neurons for all hidden layers will be enough for most problems.
+Therefore, we chose to use two hidden layers and each layer has 8 neurons since we did not have too many input features.
+The input features used were also based on the feature selecting result in Section~\ref{sec:stepwise}, so we had seven input features for our training model and it was taken for granted that we set the number of input neurons to 7, which represented each input feature.
+Because the earthquake prediction problem is a binary classification, we used 2 neurons in output layer. Each output neuron represents one class. The output represents the probability of the classes (earthquake or no earthquake). 
+In the end, the SoftMax activation function \citep{dunne1997pairing} are performed on the output layer, which make the final probabilities of classes sum to 1 (SoftMax we implemented in training function rather than in definition of NN class).
+
+We used PyTorch to conveniently define the neural network model corresponding to architecture in Figure~\ref{fig:neural_network_model} by the code in Appendix Section~\ref{sec:NN_code}.
+It implemented three linear transformations, which represented input layer $\rightarrow$ $1^{st}$ hidden layer, $1^{st}$ hidden layer $\rightarrow$ $2^{nd}$ hidden layer and $2^{nd}$ hidden layer $\rightarrow$ output layer.
+Each transformation performs a linear transformation to input data in the form of $y = xA^{T} + b$. \textit{x} represents the vector of neuron values before transformation and \textit{y} represents a vector of neuron values after transformation.
+\textit{A} represents the weights multiplied in linear transformation (like coefficients in regression) and \textit{b} represents the vector of bias. 
+Our input layer corresponding to input features, so we set the \textit{n\_input} variable in code to 7. 
+Our output layer corresponding to output target class, so we set the \textit{n\_output} variable in code to 2.
+The \textit{\_\_init\_\_} function defines the architecture of neural network. The \textit{forward} function in the code represents the process of propagation.
+
+
+\subsubsection{Configuration}
+Because this prediction problem is binary classification problem, we used the cross-entropy \citep{de2005tutorial} as the loss function of model.
+By lots of training attempts, we finally used a set of hyperparameters which make the model performance in a best level.
+
+Generally, the best performance was reached by mini-batch sizes in the range of 2 to 32. In training attempts, we found that the model performed best when the batch size was set to 8.
+For the epoch size, we started from 400 epochs which is a large selection for epoch size and stopped early to halt training when performance stopped improving.
+The selection of the learning rate is also significant, we started with a pretty low value ($10^{-6}$) and slowly multiply it by 10 until it reaches 1 to determine which rate served well for our earthquake prediction problem. 
+We found $10^{-3}$ is best and retrained our model using this optimal learning rate.
+For the optimizer used in our model, we decided to use Adam optimizer, which tends to excuse bad learning late and other non-optimal hyperparameters compared with most common used SGD optimizer.
+
+The configuration which is called hyperparameters in machine learning is summarized below:
+
+\begin{itemize}
+    \item \textit{learning rate}: $10^{-3}$
+    \item \textit{batch size}: 8
+    \item \textit{epoch}: 200
+    \item \textit{optimizer}: Adam
+    \item \textit{loss function}: cross entropy
+\end{itemize}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{neural_network_model.png}
+    \end{center}
+    \caption{\label{fig:neural_network_model} Constructed feedforward neural network model architecture.}
+\end{figure}
+
+\subsubsection{Training}
+\label{sec:NN_training}
+We initially divided the dataset into training dataset and testing dataset and normalized them as we done before fitting logistic regression model in \ref{sec:LRM}.
+We trained the NN model with the optimized hyperparameters above.
+For each epoch, we trained using the whole training dataset and tested the accuracy of current model in testing dataset.  
+We used \textit{torch.utils.data.DataLoader} to load the training dataset and testing dataset.
+Every time we loaded a batch (8 samples) of training data and input into model for propagation, the outputs were compared with the labels. 
+According to loss of current batch, we updated the weights in model by \textit{optimizer.step()}.
+After training by each epoch, we calculate the accuracy of NN model on training dataset and testing dataset respectively and updated the loss of them in log plot. 
+The training process of our NN model is shown in Appendix Figure~\ref{fig:training_process}.
+
+
+\section{Results and Discussion}
+\label{sec:results}
+This section will analyze the results from Section~\ref{sec:Implementation}.
+
+\subsection{Visualization}
+\label{sec:visualization_result}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{activity.png}
+    \end{center}
+    \caption{\label{fig:activity} Activities during 2011 to 2018 in interest area from Oklahoma (The three black boxes in (a)(b) denote similar dense distribution between seismicity and injections).}
+\end{figure}
+
+Through these activities distribution in Fig~\ref{fig:activity}, we can find a rough spatial correlation between some of them.
+We firstly compare the depth to basement with earthquake activities. In the Figure~\ref{fig:activity} (e) it shows lower left region has larger depth value and upper right region almost has 0 value,
+which means the lower left region of interest area has a thicker softer sedimentary rocks than upper right region.
+This corresponds to earthquake occurrences more in the upper right region than in the lower left region of interest area.
+It can be inferred that the induced seismicity may be related to depth to basement. 
+Besides, injection activities are similar to earthquakes activities in spatial distribution. 
+As the Figure~\ref{fig:activity} shows, three black rectangular regions (marked by 1 to 3) represent the seismicity and injections dense area respectively, which are highly similar in spatial distribution, even in small area as rectangular area 3. 
+By the high similarity, we can conclude that the induced seismicity has high correlation with injection activities.
+However, in terms of the hydraulic fracturing activities and well spatial data, we cannot find some relation between induced earthquake and them and we need to explore and interpret through the model generated.
+
+\subsection{Features Selection}
+The process of features selection with stepwise regression approach is shown in Appendix Section~\ref{sec:feature_selection_process} and the result of feature selecting along with their p-value and VIF is shown in Figure~\ref{fig:stepwise}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{stepwise.png}
+    \end{center}
+    \caption{\label{fig:stepwise} Result of feature selection using stepwise regression with VIF checking.}
+\end{figure}
+
+We can see all the selected features by stepwise regression approach meet the requirement of p-value \textless 0.05 and VIF \textless 5.
+This means we successfully eliminated the features which are not statistically significant and there is no high multicollinearity in all features selected.  
+
+\subsection{Model Evaluation and Comparison}
+\label{sec:model_evaluate_comparison}
+By the Section~\ref{sec:LRM} and Section~\ref{sec:NNM}, we fitted the LR model and trained the configured NN model on the training dataset. 
+Their prediction accuracy on testing dataset achieved at 72.18\% and 80.3\% respectively. 
+It denotes that NN model performs better than LR model in terms of unseen dataset and have better ability of generalization.
+Besides, we finally used these models to test on the whole dataset, which contains all the grids point of interpret area. The results on whole dataset will be evaluated in this section.
+The confusion matrixes of results by these two models are shown on Figure~\ref{fig:confusion_matrix}. The measures we introduced in Section~\ref{sec:model_evaluate_measures} to evaluate models are calculated based on confusion matrices and shown in Table~\ref{tab:Indicators_by_confusion_matrix}.
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{confusion_matrix.png}
+    \end{center}
+    \caption{\label{fig:confusion_matrix} Confusion matrices of prediction results by LR model and NN model.}
+\end{figure}
+
+\begin{table}
+    \centering
+    \caption{Measures calculated using confusion matrices by LR model and NN model}
+    \label{tab:Indicators_by_confusion_matrix}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Model\textbackslash{}Indicator & Accuracy   & Precision & Recall & F1-score \\ \hline
+    Logistic Regression Model      & 0.705 & 0.702     & 0.530  & 0.604    \\ \hline
+    Neural Network Model           & 0.791  & 0.730     & 0.807  & 0.766    \\ \hline
+    \end{tabular}
+    \end{table}
+    
+The accuracy denotes the proportion of all correct predictions in the total predictions. 
+We can see for all regions in interest area, the prediction accuracy of NN model (79.1\%) is 9 percent higher than LR model (70.5\%).
+Through the accuracy comparison for LR model and NN model in Table~\ref{tab:Indicators_by_confusion_matrix}, it shows that for a task of predicting a class label of one region in interest area, NN model have a higher prediction accuracy. 
+Unfortunately, the samples in our dataset are not balanced in the ratio of 2:3 as shown in Figure~\ref{fig:class_label}.
+Therefore, using the accuracy to evaluate has great defects introduced in Section~\ref{sec:APRF} in this earthquake prediction problem, which may have high accuracy but meaningless.  
+
+We also compare two models in precision and recall. 
+According to the Table~\ref{tab:Indicators_by_confusion_matrix}, the precisions of two models are similar.
+This denotes that for all seismic predictions, two models have the similar ability to predict correctly.
+However, we found the recall of NN model is much higher than that of LR model, which is 0.53 (LR) and 0.807 (NN).
+This means that for one real seismic region, the NN model has the probability of 80.7\% but LR model only have a probability of 53\% to predict correctly. The LR model shows a terrible performance for binary classification problem concentrating on real seismic regions.
+Furthermore, in order to meet our two expectations mentioned simultaneously in Section~\ref{sec:APRF}, we also introduced the F1 score. As Table~\ref{tab:Indicators_by_confusion_matrix} shows, LR model has the F1-score of 0.604 and NN model has the F1-score of 0.766.
+It shows that NN model indeed satisfied expectations that it can both make more accurate predictions and select out more actual seismic samples.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{ROC_curve.png}
+    \end{center}
+    \caption{\label{fig:ROC_curve} ROC curves by LR model and NN model (Black diagonal line represents random guessing in binary classification problem).}
+\end{figure}
+
+In ROC curve, the diagonal line (black line in Figure~\ref{fig:ROC_curve}) represents random guessing. 
+Therefore, a model with ROC curve below diagonal has the performance inferior to random guessing.
+When we evaluate model on ROC, we hope that the TP rate to be high when the FP rate is low because we want no false positive and no false negative. This state is just the ideal perfect state for a binary classification problem (FPR = 0, TPR = 1, which is (0, 1) in left top corner in Figure~\ref{fig:ROC_curve}), where all the predictions are correct.
+In other words, the steeper the ROC curve or the closer to left top corner, the more accurate the model is.
+From the Figure~\ref{fig:ROC_curve}, we can see both LR model curve and NN model curve are above the diagonal line, which means these two models are better than random guessing.
+Furthermore, ROC of NN is always above that of the LR and closer to left top corner. 
+AUC is an intuitive measure in ROC plot. LR model has the AUC of 0.68 but NN has the AUC of 0.79. Therefore, all these prove that NN model indeed have a better prediction ability than LR model. 
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{mapping_comparison.png}
+    \end{center}
+    \caption{\label{fig:mapping_comparison} Seismicity prediction by logistic regression model and neural network model (The black line areas represent the interest areas where the performance compared between LR and NN model in Section~\ref{sec:model_evaluate_comparison}).}
+\end{figure}
+
+In the last part, we visualized the predictions by two models on Oklahoma map to make a more intuitive comparison.
+The mapping results of predictions and mapping are shown in Figure~\ref{fig:mapping_comparison}. 
+Both LR and NN model predicted the spatial distribution of major earthquake regional clusters mentioned in Section~\ref{sec:visualization_result}, even though the precision of regional outline is poor.
+However, in terms of TPR, these two models performed greatly differently by predicted maps comparison with true map.
+We want TPR (true positive rate) to be closer to 1 (equivalently FN closer to 0), which means we want to predict out more seismic regions among true seismic regions.
+It is because we tend to regard an region at the risk of seismicity as seismic rather than nonseismic, in order to prevent the property damage and casualties.
+According to Figure~\ref{fig:mapping_comparison}, all gridding regions in the two blocks marked by 1 and 2 are almost seismic (positive) in true seismic map.
+NN model indeed selected out almost all true seismic regions in these two blocks, but LR model performs badly and wrongly predicts many seismic regions to be nonseismic.
+
+\subsection{Feature Importance Analysis}
+In this part, we will analyze the influence of each feature on earthquake prediction.
+According to feature analysis by LR model and NN model in Figure~\ref{fig:feature_attribution}, we found the agreed main feature in them is \textit{the depth to basement}.
+It shows that earthquake occurrence is negatively correlated with its depth to basement in that region.
+Furthermore, \textit{well\_depth\_avg} (the average depth of active wells) and \textit{hf\_number} (the number of hydraulic fracturing activities) are also important features, which are positively correlated with seismicity in LR model but negatively correlated with seismicity in NN model.
+This might be due to incomplete of dataset, or because LR model is so poorly fitted that the coefficient sign is wrong. Anyway, these two features should be further investigated in future work.
+In NN model, in addition to three features above, we found that \textit{hf\_base\_water\_volume\_sum} is also considered to be important and negatively correlated with earthquake occurrence based on most attribution algorithms.
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{feature_attribution.png}
+    \end{center}
+    \caption{\label{fig:feature_attribution} Feature attribution result by LR model and NN model.}
+\end{figure}
+
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+This project visualized various geological and industrial factors in Oklahoma and found some of them have rough correlations with seismicity. 
+We selected out statistically significant features and eliminated multicollinearity by forward stepwise regression approach with VIF checking.
+These features contain number of hydraulic fracturing activities, volume of water in hydraulic fracturing, depth to basement, depth of wells, volume of injections and number of injections deeper than basement.
+
+Compared with physical model based on fluid flow and seismic physics by \citep{norbeck2018hydromechanical}, this project constructed two models using machine learning methods.
+The logistic model works not badly in predicting non-seismic regions but have deficiencies in predicting seismic regions. 
+The neural network model is good at predicting actual seismic areas in which we concentrate on.
+According to the result map of interest area we selected, we concluded that neural network model trained can accurately predict out the most actual regions of the earthquake occurrence.
+This is what logistic regression model cannot do. 
+
+Through the feature importance analysis in LR model and NN model, we found the depth to basement is the key predictor of the spatial distribution of seismicity. 
+It is consistent with both models that seismicity is largely promoted with the reduce in depth to basement.
+The amount of hydraulic fracturing and the depth of wells are also found important but they have opposite correlation with seismicity among these two models, which require to be further investigated.
+Furthermore, water volume in base of HF is additionally considered to be important and negatively correlated with earthquake occurrence through NN model.
+
+We have implemented and tried to collect various data in a circular region with a radius of 10 km from the center in each rectangular gird point region.
+For distance calculation in radius mode, we have tried two methods: One was using GeoPy module directly and the other was computing through distance formulas after cartesian coordinate mapping. 
+However, they were time consuming (at least a few days cost) and not suitable for debugging my models. Due to the time limitation of this project, we only implemented the radius mode but actually used rectangular mode for training data generation. 
+Therefore, we can use more reasonable radius mode for collecting features in future study, which may obtain ideal predictive performance and feature importance analysis. It might solve the partial inconsistencies of signs in the feature attribution section.
+
+\newpage
+% References
+\bibliographystyle{agsm}
+\bibliography{references.bib}  % BibTeX references are saved in references.bib
+
+\newpage
+% \appendix
+\section*{Appendix}
+\subsection{Supplementary Figures}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{earthquake_plot.png}
+    \end{center}
+    \caption{\label{fig:earthquake_plot} Earthquake occurrences in Oklahoma. The color of marker represents the magnitude of earthquake. The red box represents the interest area we studied in this project. The longitude ranges in (-99.5W, -96W) and latitude ranges in (35.0N, 37.0N)}
+\end{figure}
+
+% \begin{figure}[H]
+%     \begin{center}
+%         \includegraphics[width=1\textwidth]{neural_network_exmaple.png}
+%     \end{center}
+%     \caption{\label{fig:neural_network_example} The model created from above code simulated through playground.tensorflow.org}
+% \end{figure}
+
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{p-value.png}
+    \end{center}
+    \caption{\label{fig:p-value} Feature selection in stepwise regression with p-value (It is an intermediate step in stepwise logistic regression process.
+    The `injection\_vol', `HF\_Base\_Water\_Volume', `HF\_Base\_NoWater\_Volume' both have a p-value greater than threshold 0.05 in logistic regression results, which are not statistically significant and some of them should be eliminated properly in later process.)}
+\end{figure}
+
+
+% \begin{figure}[H]
+%     \begin{center}
+%         \includegraphics[width=1\textwidth]{feature_importance.png}
+%     \end{center}
+%     \caption{\label{fig:feature_importance} Feature importance example in Captum tutorial.}
+% \end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{heatmap_all.png}
+    \end{center}
+    \caption{\label{fig:heatmap} Correlation heatmap generated in Section~\ref{sec:SFSA}. We noted that there exists multicollinearity (dark blocks in figure) among these candidate features.}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{training_process.png}
+    \end{center}
+    \caption{\label{fig:training_process} Neural network model training process in Section~\ref{sec:NN_training}. We stopped training when the log loss of the validation is no longer reduced. It means NN model is currently in an optimal trained state.}
+\end{figure}
+
+\subsection{Supplementary Tables}
+
+\begin{table}[H]
     \centering
     \caption{The dependencies of this project}
     \label{tab:library_dependency}
@@ -352,386 +770,190 @@ The data files (\textit{.csv}) generated from feature extraction part are locate
     \end{tabular}
     \end{table}
 
-\section{Implementation}
-\label{sec:Implementation}
-\subsection{Data Processing and Spatial visualization}
-\label{sec:dpsv}
+\begin{table}[]
+    \centering
+    \caption{Features generated by spatial gridding and data collecting for regions}
+    \label{tab:feature_generated}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|l|}
+    \hline
+    \multicolumn{1}{|c|}{Feature}                                     & \multicolumn{1}{c|}{Interpretation}                                    \\ \hline
+    \textit{injection\_number {[}entry{]}}                            & the number of injections                                               \\ \hline
+    \textit{injection\_vol\_sum {[}BPD{]}}                            & the sum of injection volume                                            \\ \hline
+    \textit{injection\_psi\_sum {[}PSI{]}}                            & the sum of injection pressure                                          \\ \hline
+    \textit{injection\_depth\_avg {[}m{]}}                            & the mean of injection depth                                            \\ \hline
+    \textit{injection\_above\_basement\_number {[}entry{]}}           & the number of injections whose depth are shallow than the basement     \\ \hline
+    \textit{injection\_under\_basement\_number {[}entry{]}}           & the number of injections whose depth are deeper than the basement      \\ \hline
+    \textit{injection\_close\_to\_basement\_500\_number {[}entry{]}}  & the number of injections whose depth is within 500 metres of basement  \\ \hline
+    \textit{injection\_close\_to\_basement\_1000\_number {[}entry{]}} & the number of injections whose depth is within 1000 metres of basement \\ \hline
+    \textit{active\_well\_number {[}entry{]}}                         & the number of working wells                                            \\ \hline
+    \textit{well\_depth\_avg {[}m{]}}                                 & the mean of well depth                                                 \\ \hline
+    \textit{well\_above\_basement\_number {[}entry{]}}                & the number of working wells whose depth are shallow than the basement  \\ \hline
+    \textit{well\_under\_basement\_number {[}entry{]}}                & the number of working wells whose depth are deeper than the basement   \\ \hline
+    \textit{well\_close\_to\_basement\_500\_number {[}entry{]}}       & the number of wells whose depth is within 500 metres of basement       \\ \hline
+    \textit{well\_close\_to\_basement\_1000\_number {[}entry{]}}      & the number of wells whose depth is within 1000 metres of basement      \\ \hline
+    \textit{depth\_to\_basement\_avg {[}m{]}}                         & the mean of the depth to the basement                                  \\ \hline
+    \textit{hf\_number {[}entry{]}}                                   & the number of hydraulic fracturing activities                          \\ \hline
+    \textit{hf\_base\_water\_volume\_sum {[}BPD{]}}                   & the sum of volume by hydraulic fracturing with water                   \\ \hline
+    \textit{hf\_base\_nowater\_volume\_sum {[}BPD{]}}                 & the sum of volume by hydraulic fracturing with nowater                 \\ \hline
+    \textit{earthquake\_occurrence {[}0 or 1{]}}                       & 0: not occurred; 1: occurred.                                          \\ \hline
+    \end{tabular}%
+    }
+    \end{table}
 
-In the initial phase of project, we imported all the available datasets (earthquake data, geological data, hydraulic fracturing data, injection data, well data) and preprocessed on various datasets. 
-The metadata of earthquake dataset was exported from \textit{Oklahoma Geological Survey Earthquake Catalog Download Tool} \citep{walter2020oklahoma}.
-The injection dataset was exported from \textit{Oklahoma Corporation Commission} \citep{OklahomaCorporationCommission}.
-The preprocessing operations include missing values processing and data selecting by date.
-The date of injection dataset we imported was in (2011, 2020). However, we only used the data between 2011 and 2018. Because the data files \textgreater 2019 supported by the \textit{Oklahoma Corporation Commission} are still under review and corrections are being made as warranted, those files are currently incomplete and subject to change.
-Therefore, due to date limitation of injection data, We set the interest time in the period of 2011 to 2018 for all datasets.
-For the interest area, we set it to the area whose longitude ranges in (-99.5W, -96W) and latitiude ranges in (35.0N, 37.0N), which is a available spatial scope provied by all datasets.
-Then, we visualized all the selection data by \textit{matplotlib} and \textit{geopandas} module. 
-The geological formation (depth to basement) is shown in Fig~\ref{fig:depth_to_basement}, and the wells along with various activities (seismicity, injection, hydraulic fracturing) are shown in Fig~\ref{fig:activity}.
-The core of visualization code for all dataset is similar and is shown in the below:
-
-\begin{lstlisting}[language=Python]
-    earthquake_geometry = [Point(xy) for xy in zip(earthquake_df['longitude'], earthquake_df['latitude'])]
-    earthquake_geo_df = gpd.GeoDataFrame(earthquake_df, crs = "EPSG:4326", geometry = earthquake_geometry)
-
-    fig, ax = plt.subplots(figsize=(20, 20), dpi=300)
-    oklahoma_map.plot(ax=ax, alpha=0.4,color='grey')
-    earthquake_geo_df.plot(column='magnitude',ax=ax, alpha=0.5, legend=True, markersize=10)
-    plt.title('Earthquake (magnitude>=2) in Oklahoma', fontsize=15,fontweight='bold')
-    plt.xlim(-99.5, -96.0)
-    plt.ylim(35.0, 37.0)
-    plt.show()
-\end{lstlisting}
-The geodetic coordinate system we used for mapping in this project is 'EPSG:4326' \citep{epsg}, which is the most popular coordinate system. 
-
-\subsection{Spatial Griding and Features Extraction}
-For the interest area (longitude ranges in (-99.5W, -96W) and latitiude ranges in (35.0N, 37.0N)), we divided it into $40 \times 40$ grids. Then we counted the values of all features and target for each grid by the various data from Section~\ref{sec:dpsv}:
-\begin{itemize}
-    \item \textit{injection\_vol\_sum [BPD]}: The sum of injection volume in this grid.
-    \item \textit{injection\_psi\_sum [PSI]}: The sum of injection pressure in this grid.
-    \item \textit{injection\_depth\_avg [m]}: The mean of injection depth in this grid.
-    \item \textit{injection\_under\_basement\_number [entry]}: The number of injections whose depth are deeper than the basement in this gird.
-    \item \textit{active\_well\_number [entry]}: The number of working wells in this grid.
-    \item \textit{well\_depth\_avg [m]}: The mean of well depth in this grid.
-    \item \textit{well\_under\_basement\_number [entry]}: The number of working wells whose depth are deeper than the basement in this grid.
-    \item \textit{depth\_to\_basement\_avg [m]}: The mean of the depth to the basement in this grid.
-    \item \textit{hf\_number [entry]}: The number of hydraulic fracturing activities in this grid.
-    \item \textit{hf\_base\_water\_volume\_sum [BPD]}: The sum of volume by hydraulic fracturing with water
-    \item \textit{hf\_base\_nowater\_volume\_sum [BPD]}: The sum of volume by hydraulic fracturing with nowater
-    \item \textit{earthquake\_occurrence [0 or 1]}: If earthquake occurred in this grid. 0: not occured; 1: occurred.
-\end{itemize}
-The data files were generated in \textit{.csv} and saved in \textit{data} directory.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{target_mapping.png}
-    \end{center}
-    \caption{\label{fig:target_mapping} Target variable of earthquake occurrence within the interest area in Oklahoma.}
-\end{figure}
-After this statistical process, we obtained a dataset in terms of spatial distribution, each of which represents a subarea of our interest area and contains the values of features.
-The target variable was based on seismicity, which represents the earthquake occurrence in spatial distribution, we assigned each grid a value of \textit{one} if there was at least one (magnitude\textgreater2) earthquake occurred during 2011 to 2018. 
-Otherwise, if no earthquake occurred in this grid, we assigned it a value of \textit{zero}. The result grid of the earthquake occurrence (target) from 2011 to 2018 is shown in Figure~\ref{fig:target_mapping}. 
-The white lines show the grid, with a spacing in the x direction of 8 km and the y direction of 5.5 km. The white points denotes the earthquake occurrences.
-The red region denotes it has seismicity in this region and blue region denotes it does not have seismicity in this region. In our target grid, 42.5\% of the 1600 gird points are assigned the value '1'.
-
-\subsection{Stepwise Feature Selection Approach}
-\label{sec:SFSA}
-
-
-As some activities are strongly overlapped in spatial distribution, they may have a high degree of multicollinearity. 
-We calculated the feature similarity on all fearures based on Peason correlation coffecients and generated a heatmap as Figure~\ref{fig:heatmap}.
-In general, We consider a high degree of collinearity between two features with a coefficient greater than 0.9, like 'active\_well\_number' and 'well\_under\_basement\_number'.
-Therefore, in the process of selecting statistically significant features, we should also account for the high multicollinearity to prevent the influence in Section~\ref{sec:stepwise}.
-
-To select 'best' features and deal with high multicollinearity problem, we use a forward stepwise approach introduced in Section~\ref{sec:stepwise}. We iteratively add a feature whilst ensuring the p-value of all current added feature remains below 0.05. 
-This means that each feature we kept is statistically significant at the 95\% confidence level. Meanwhile, in each iteration step, we also deal with the high multicollinearity by checking the Variance Inflation Factor (VIF) for current kept features.
-We iteratively eliminated the feature whose VIf is greater than 10 after adding a new feature (generally we think think there exists a high multicollinearity when VIF of some feature \textgreater 10).
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.8\textwidth]{heatmap_all.png}
-    \end{center}
-    \caption{\label{fig:heatmap} Correlation Heatmap.}
-\end{figure}
-
-After this process, we eliminated insignificant features and also solved the problem of high multicollinearity between variables. 
-The result of features selecting with stepwise approach is shown in Figure~\ref{fig:stepwise}. 
-
-\subsection{Logistic Regression Model}
-\label{sec:LRM}
-With the selected features in Section~\ref{sec:SFSA}, we constructed a multiple logistic regression model in this part. which used the features selected as independent variables (hf\_base\_water\_volume\_sum, hf\_number, depth\_to\_basement\_avg, well\_depth\_avd, injection\_under\_basement\_number, injection\_depth\_avg, injection\_vol\_sum) and earthquake occurrence as the target variable.
-We standardise and normalise all input features by z-score normalization \citep{patro2015normalization} to reduce data skewness and bring all features on the same scale. The normalization of features allows us to interpret the relative difference in the model coffecients.
-
-We splitted the dataset into train dataset and test dataset with the ratio of 9:1 , which have 1440 and 160 samples (Each sample is associated with one gird point in the interest area). In this build part, we use \textit{sklearn.linear\_model.LogisticRegression} to construct and fit our logistic model, which achieved the accuracy of 72.5\% on the test dataset.
-The core part of code is shown in below:
-\begin{lstlisting}[language=Python]
-    X_train,X_test,y_train,y_test = train_test_split(X,Y,train_size=0.9, random_state=42)
-    model = LogisticRegression()
-    model.fit(X_train,y_train)
-    model.score(X_test,y_test)
-\end{lstlisting}
-After fitting the model and testing, we check the coffecients for all input features by \textit{model.coef\_[0]} and plot them in Figure~\ref{fig:logistic_coffecients}. With the trained logistic model, we used the whole dataset to predict and compared output labels with true labels, which is shown in Figure~\ref{fig:logistic_result}.
-
-\subsection{Neural Network Model}
-\label{sec:NNM}
-Due to the relatived low accuracy of prediction by logistic regression model in Section~\ref{sec:SFSA}, we used the neural network model to improve the accuracy of prediction, which can be used in practical. 
-Because logistic regression is so simple that it is difficult to model for nonlinear data or data with polunomial correlation, it is hard to deal with the complicated problem. 
-After all, in practice we don't know the actual relationship between earthquakes and these potential factors.
-We don't even know if the relationship between input features and the target variable (earthquake occurrence) is linear or non-linear.
-Therefore, neural network algorithm is suitable for the prediction of this kind of complicated problem. Neural network model have the ability to capture information contained in large amounts of data and build incredibly complex models. With the abilities of self-learning and high-speed for optimal solution, it easily achieves a higher performance compared with regression method.
-
-\subsubsection{Architecture}
-In this project, we use a neural network model which has its input layer with 7 neurons, two hidden layers of 8 neurons per layer and an outout layer with 2 neurons as shown in Figure~\ref{fig:neural_network_model}. 
-In general, 1-5 hidden layers will serve for most problems and using the same number of neurons for all hidden layers will suffice. 
-Therefore in this project, we choose to use two hidden layers and each layer has 8 neurons.
-The input features used are also based on the feature selecting result in Section~\ref{sec:stepwise}, so we had seven input features for our training model.
-It's taken for granted that we set the number of neurons to 7, which presents the each input feature.
-For the earthquake prediction problem, which is a binary classification, so we use two neurons in output layer which one output neuron per positive class. The output represents the probability of the positive class (earthquake or no earthquake). We use the softmax activation function on the output layer to ensure the final probabilites sum to 1.
-
-
-\subsubsection{Configuration}
-For this prediction problem is classification problem, we use the cross-entropy \citep{de2005tutorial} as the loss function which serves well.
-By lots of training attempts, we final used a set of hyperparameters which make the model performance in a well level.
-Generally the best preformance is obtained by mini-batch sizes between 2 and 32, in training attempts, we found that the model performed best when the batch size was set to 16.
-For the epoch size, we started from a large number of epochs and use early stopping to halt training when performance stops improving.
-The selection of the learning rate is very important, we start with a very low value ($10^{-6}$) and slowly multiply it by a constant unitl it reaches a pretty high value (here the max value is 10).
-We measured the performance (vs the log of learning rate) in \textit{Weights and Biases} to determine which rate served well for our earthquake prediction problem. We found $10^{-2}$ is best and we then retrrin our model using this optimal learning rate.
-For the optimizer used in our model, we decide use Adam optimizer, which tends to be quite forgiving to a bad learning late and other non-optimal hyperparameters compared with most common used SGD optimizer.
-
-The configuration which is called hyperparameters in machine learning is summarized below:
-
-\begin{itemize}
-    \item \textit{learning rate}: $10^{-2}$
-    \item \textit{batch size}: 16
-    \item \textit{epoch}: 200
-    \item \textit{optimizer}: Adam
-    \item \textit{loss function}: cross entropy
-\end{itemize}
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{neural_network_model.png}
-    \end{center}
-    \caption{\label{fig:neural_network_model} Neural Network Model Architecture.}
-\end{figure}
-
-\subsubsection{Training}
-We initially divided the dataset into training dataset and testing dataset and normalised them as we done before fitting logistic regression model in \ref{sec:LRM}.
-We use the Pytorch to conveniently generate the neural network model corresponding to architecture in Figure~\ref{fig:neural_network_model} by the code below:
-
+\subsection{Supplementary Codes and Results}
+\subsubsection{The Code of Defining NN Model}
+\label{sec:NN_code}
 \begin{lstlisting}[language=Python]
     class Net(nn.Module):
     def __init__(self,n_input, n_output):
         super(Net,self).__init__()
         self.linear1 = nn.Linear(n_input, 8)
-        self.sigmoid1 = nn.Sigmoid()
+        self.relu1 = nn.ReLU()
         self.linear2 = nn.Linear(8, 8)
-        self.sigmoid2 = nn.Sigmoid()
+        self.relu2 = nn.ReLU()
         self.linear3 = nn.Linear(8, n_output)
 
     def forward(self, x):
         lin1_out = self.linear1(x)
-        sigmoid_out1 = self.sigmoid1(lin1_out)
-        sigmoid_out2 = self.sigmoid2(self.linear2(sigmoid_out1))
-        return self.linear3(sigmoid_out2)
+        relu_out1 = self.relu1(lin1_out)
+        relu_out2 = self.relu2(self.linear2(relu_out1))
+        return self.linear3(relu_out2)
 \end{lstlisting}
-As same with the Figure~\ref{fig:neural_network_model} shows, we implemented three linear transformations, which represents input layer to first hidden layer, first hidden layer to second hidden layer and second hidden layer to output layer.
-Each transformation applies a linear transformation to the incoming data: $y = xA^{T} + b$. x represents the vector of neuron values before transformation and y represents a vector of neuron values after transformation.
-A represents the weights multiplied in linear transformation (similar to coefficients in regression) and b represents the vector of bias. 
-Our input layer corresponding to input features so we set the \textit{n\_input} variable in code to 7. 
-Our output layer corresponding to output target class so we set the \textit{n\_output} variable in code to 2.
-The \textit{\_\_init\_\_} function defines the architecture of neural network. The \textit{forward} function in the code represents the process of propagation.
 
-we trained the model by 200 epochs in total. For each epoch, we trained by the whole training dataset and test the accuracy of current model in testing dataset.  We used \textit{torch.utils.data.DataLoader} to load the training dataset and testing dataset.
-Then, everytime we load a batch (16 samples) of training data and input into model for prapagation, then the outputs were compared with the labels. According to loss of current batch, we updated the weights in model by \textit{optimizer.step()}.
-After training by one epoch, we calculate the accuracy of model in whole training dataset and whole testing dataset and updated the loss value in log plot. The training performance figure of our model is shown in Figure~\ref{fig:training_process}.
-By use the network model trained, we achieved a much better accuracy of 80.6\% on testing dataset compared with logistic regression model in Section~\ref{sec:LRM}.
-Similarly, we also used the whole dataset to predict by our trained neural network model and compared output labels with true labels, which is shown in Figure~\ref{fig:neural_network_result}.
-
-\section{Results and Discussion}
-This section will analogize the results from Section~\ref{sec:Implementation}.
-
-\subsection{Visualiztion}
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{activity.png}
-    \end{center}
-    \caption{\label{fig:activity} Activities during 2011 to 2018 in interest area from Oklahoma.}
-\end{figure}
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.6\textwidth]{depth_to_basement.png}
-    \end{center}
-    \caption{\label{fig:depth_to_basement} Depth to basement in Oklahoma.}
-\end{figure}
-
-Through these activities distribution in Fig~\ref{fig:activity} and Fig~\ref{fig:depth_to_basement}, we can found a rough spatial correlation between some of them.
-We firstly compared the depth to basement with earthquake activities, we found the lower left region of interest area has a thicker softer sedimentary rocks than upper right region (In the Figure~\ref{fig:depth_to_basement} it showes lower left region has larger depth value and upper right region almost has 0 value).
-It is can be inferred that the induced seismicity may be related to depth to basement. 
-Besides, the injection activities are similar to earthquakes activities in spatial distribution. 
-As the Figure~\ref{fig:activity} shows, the three black rectangular regions (marked by 1 to 3) represents the activities dense area, which are highly similar in spatial distribution, even in small area as rectangular area 3. 
-By the high similarity, we can concluded that the induced seismicity have high correlation with injection activities.
-For the hydraulic fracturing activities and well spatial data, we can not found some relation beteen induced earthquake and them and we need to explore and interpret through the model generated.
-
-\subsection{Stepwise Approach}
-The Process of features selection with stepwise approach is shown in below block and the feature result along with their p-value and VIF are shown in Figure~\ref{fig:stepwise}.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{stepwise.png}
-    \end{center}
-    \caption{\label{fig:stepwise} Feature Selection Result with Stepwise Approach.}
-\end{figure}
-
+\subsubsection{The Process in Stepwise Regression with VIF Checking}
+\label{sec:feature_selection_process}
 \begin{itemize}
-\item Iteration 1\\
-Feature selected: hf\_base\_nowater\_volume\_sum\\
-P-value \textgreater 0.05 check: hf\_base\_nowater\_volume\_sum\\
-Feature removed: hf\_base\_nowater\_volume\_sum\\
-VIF\textgreater 10 check: None\\
-Feature removed: None
+    \item \textit{Iteration 1}\\
+    Feature selected: hf\_base\_nowater\_volume\_sum\\
+    P-value \textgreater 0.05 check: hf\_base\_nowater\_volume\_sum\\
+    Feature removed: hf\_base\_nowater\_volume\_sum\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None
+    
+    \item \textit{Iteration 2}\\
+    Feature selected: hf\_base\_water\_volume\_sum\\
+    P-value \textgreater 0.05 check: None\\
+    Feature removed: None\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 3}\\
+    Feature selected: hf\_number\\
+    P-value \textgreater 0.05 check: None\\
+    Feature removed: None\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 4}\\
+    Feature selected: depth\_to\_basement\_avg\\
+    P-value \textgreater 0.05 check: None\\
+    Feature removed: None\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 5}\\
+    Feature selected: well\_close\_to\_basement\_1000\_number\\
+    P-value \textgreater 0.05 check: None\\
+    Feature removed: None\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 6}\\
+    Feature selected: well\_close\_to\_basement\_500\_number\\
+    P-value \textgreater 0.05 check: well\_close\_to\_basement\_500\_number(0.647), well\_close\_to\_basement\_1000\_number(0.065)\\
+    Feature removed: well\_close\_to\_basement\_500\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    
+    \item \textit{Iteration 7}\\
+    Feature selected: well\_under\_basement\_number\\
+    P-value \textgreater 0.05 check: None\\
+    Feature removed: None\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 8}\\
+    Feature selected: well\_above\_basement\_number\\
+    P-value \textgreater 0.05 check: well\_above\_basement\_number(0.46)\\
+    Feature removed: well\_above\_basement\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 9}\\
+    Feature selected: well\_depth\_avg\\
+    P-value \textgreater 0.05 check: well\_close\_to\_basement\_1000\_number(0.352)\\
+    Feature removed: well\_close\_to\_basement\_1000\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 10}\\
+    Feature selected: active\_well\_number\\
+    P-value \textgreater 0.05 check:  well\_under\_basement\_number(0.477), active\_well\_number(0.772)\\
+    Feature removed: active\_well\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 11}\\
+    Feature selected: injection\_close\_to\_basement\_1000\_number\\
+    P-value \textgreater 0.05 check: injection\_close\_to\_basement\_1000\_number(0.876)\\
+    Feature removed: injection\_close\_to\_basement\_1000\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    
+    \item \textit{Iteration 12}\\
+    Feature selected: injection\_close\_to\_basement\_500\_number\\
+    P-value \textgreater 0.05 check: injection\_close\_to\_basement\_500\_number(0.876)\\
+    Feature removed: injection\_close\_to\_basement\_500\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 13}\\
+    Feature selected: injection\_under\_basement\_number\\
+    P-value \textgreater 0.05 check: well\_under\_basement\_number(0.102)\\
+    Feature removed: well\_under\_basement\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    
+    \item \textit{Iteration 14}\\
+    Feature selected: injection\_above\_basement\_number\\
+    P-value \textgreater 0.05 check: None\\
+    Feature removed: None\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 15}\\
+    Feature selected: injection\_depth\_avg\\
+    P-value \textgreater 0.05 check: injection\_above\_basement\_number\\
+    Feature removed: injection\_above\_basement\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 16}\\
+    Feature selected: injection\_psi\_sum\\
+    P-value \textgreater 0.05 check: injection\_psi\_sum(0.969)\\
+    Feature removed: injection\_psi\_sum\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 17}\\
+    Feature selected: injection\_vol\_sum\\
+    P-value \textgreater 0.05 check: None\\
+    Feature removed: None\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    
+    \item \textit{Iteration 18}\\
+    Feature selected: injection\_number\\
+    P-value \textgreater 0.05 check: injection\_under\_basement\_number(0.065), injection\_number(0.194)\\
+    Feature removed: injection\_number\\
+    VIF\textgreater 5 check: None\\
+    Feature removed: None\\
+    \end{itemize}
 
-\item Iteration 2\\
-Feature selected: hf\_base\_water\_volume\_sum\\
-P-value \textgreater 0.05 check: None\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
+\end{document}
 
-\item Iteration 3\\
-Feature selected: hf\_number\\
-P-value \textgreater 0.05 check: None\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-
-\item Iteration 4\\
-Feature selected: depth\_to\_basement\_avg\\
-P-value \textgreater 0.05 check: None\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-
-\item Iteration 5\\
-Feature selected: well\_under\_basement\_number\\
-P-value \textgreater 0.05 check: None\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-
-\item Iteration 5\\
-Feature selected: well\_depth\_avg\\
-P-value \textgreater 0.05 check: None\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-
-\item Iteration 6\\
-Feature selected: active\_well\_number\\
-P-value \textgreater 0.05 check:  well\_under\_basement\_number(0.477), active\_well\_number(0.772)\\
-Feature removed: active\_well\_number\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-
-\item Iteration 7\\
-Feature selected: injection\_under\_basement\_number\\
-P-value \textgreater 0.05 check: well\_under\_basement\_number(0.102)\\
-Feature removed: well\_under\_basement\_number\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-
-\item Iteration 8\\
-Feature selected: injection\_depth\_avg\\
-P-value \textgreater 0.05 check: None\\
-Feature removed: None\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-
-\item Iteration 9\\
-Feature selected: injection\_psi\_sum\\
-P-value \textgreater 0.05 check: injection\_psi\_sum(0.969)\\
-Feature removed: injection\_psi\_sum\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-
-\item Iteration 10\\
-Feature selected: injection\_vol\_sum\\
-P-value \textgreater 0.05 check: None\\
-Feature removed: None\\
-VIF\textgreater 10 check: None\\
-Feature removed: None\\
-\end{itemize}
-
-We can see all the selected features by stepwise approach meet the requirement of p-value \textless 0.05 and VIF \textless 10.
-This means we successfully eliminated the features which are not statistically significant and there is no high multicollinearity in all features selected.  
-
-\subsection{Model Comparison}
-\subsubsection{Logistic Regression Model}
-By the Section~\ref{sec:LRM} and Section~\ref{sec:NNM}, we fitting the logistic regression model and training the configured neural network model on the training dataset, 
-the prediction accuracy on testing dataset for these two models achieves at 72.18\% and 77.5\% respectively. This denotes that neural netwok model performs better than logistic regression model.
-Besides, we extraly use these models to test on the whole dataset, which contains all the grids point of interpret area.
-The Indicators which we usually used to assess for models in machine learning field are calculated and listed in Table~\ref{tab:Indicators}.
-
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-\begin{table}[]
-    \centering
-    \caption{Indicators of two modules}
-    \label{tab:Indicators}
-    \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    Model\textbackslash{}Indicator & ACC   & Precision & Recall & F1-score \\ \hline
-    Logistic Regression Model      & 0.705 & 0.705     & 0.530  & 0.604    \\ \hline
-    Neural Network Model           & 0.79  & 0.734     & 0.792  & 0.762    \\ \hline
-    \end{tabular}
-    \end{table}
-The \textit{ACC} refers to accuracy, which denotes the proportion of all correct predictions in the total predictions. 
-We can see for all regions in interpret area, the prediction accuracy of NN model is 10 percent higher than LR model.
-The \textit{ACC} is a simple indictor in model evaluation, it is an inituitive representation of whether the model is capable of making accurate predictions.
-However, it is easily affected by the imbalance of the samples. For example, there are a total of 100 samples and 90 of them are positive samples.
-If the model predicts all samples to positive sample, the accuracy can reaches up to 90\%, but such a model is meaningless obviously.  
-Fortunately, the samples in our dataset are relatively balanced, which have 680 positive samples and 920 negative samples in the ratio of 2:3 as shown in Figure~\ref{fig:class_label}.
-Therefore, accuracy can be a import indictor for model comparison and evaluation in this project. 
-Through the \textit{ACC} comparison for LR model and NN model in Table~\ref{tab:Indicators}, we can concluded that our NN model have a better ability pf prediction than LR model.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{class_label.png}
-    \end{center}
-    \caption{\label{fig:class_label} Class Label Distribution in whole dataset.}
-\end{figure}
-
-In a classification problem, precision attempts to answer the question that what proportion of positive identifications was actually correct. 
-The Recall attempts to answer the question that what proportion of actual positives was identified correctly.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{mapping_comparison.png}
-    \end{center}
-    \caption{\label{fig:logistic_result} Seismicity Prediction by Logistic Regression Model and Neural Network Model.}
-\end{figure}
-
-The prediction accuracy achieved 70.75\% by the comparison between seismicity in truth and prediction.
-Generally three dense regions distribution are correctlypredicted, but the precision of regional outline is pretty poor.
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{logistic_coefficients.png}
-    \end{center}
-    \caption{\label{fig:logistic_coffecients} Coffecients for Features in Fitted Logistic Regression Model.}
-\end{figure}
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{training_process.png}
-    \end{center}
-    \caption{\label{fig:training_process} Neural Network Model Training Process.}
-\end{figure}
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{neural_network_result.png}
-    \end{center}
-    \caption{\label{fig:neural_network_result} Seismicity Prediction with Trained Neural Network Model.}
-\end{figure}
-\section{Conclusion and Future Work}
-
-
-
-
-
-\newpage
-% References
-\bibliographystyle{agsm}
-\bibliography{references.bib}  % BibTeX references are saved in references.bib
-\section{Appendix}
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{neural_network_exmaple.png}
-    \end{center}
-    \caption{\label{fig:neural_network_example} The model created from above code simulated through playground.tensorflow.org}
-\end{figure}
-
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.8\textwidth]{feature_importance.png}
-    \end{center}
-    \caption{\label{fig:feature_importance} Feature Importance Example in Captum Tutorial.}
-\end{figure}
-\end{document}          
 

@@ -1,10 +1,28 @@
 \begin{thebibliography}{xx}
 
+\harvarditem[Benesty et~al.]{Benesty, Chen, Huang \harvardand\
+  Cohen}{2009}{benesty2009pearson}
+Benesty, J., Chen, J., Huang, Y. \harvardand\ Cohen, I.  \harvardyearleft
+  2009\harvardyearright , Pearson correlation coefficient, {\em in} `Noise
+  reduction in speech processing', Springer, pp.~1--4.
+
+\harvarditem{Chhikara}{1988}{chhikara1988inverse}
+Chhikara, R.  \harvardyearleft 1988\harvardyearright , {\em The Inverse
+  Gaussian Distribution: Theory: Methodology, and Applications}, Vol.~95, CRC
+  Press.
+
 \harvarditem[De~Boer et~al.]{De~Boer, Kroese, Mannor \harvardand\
   Rubinstein}{2005}{de2005tutorial}
 De~Boer, P.-T., Kroese, D.~P., Mannor, S. \harvardand\ Rubinstein, R.~Y.
   \harvardyearleft 2005\harvardyearright , `A tutorial on the cross-entropy
   method', {\em Annals of operations research} {\bf 134}(1),~19--67.
+
+\harvarditem{Dunne \harvardand\ Campbell}{1997}{dunne1997pairing}
+Dunne, R.~A. \harvardand\ Campbell, N.~A.  \harvardyearleft
+  1997\harvardyearright , On the pairing of the softmax activation and
+  cross-entropy penalty functions and the derivation of the softmax activation
+  function, {\em in} `Proc. 8th Aust. Conf. on the Neural Networks, Melbourne',
+  Vol. 181, Citeseer, p.~185.
 
 \harvarditem{Ellsworth}{2013}{ellsworth2013injection}
 Ellsworth, W.~L.  \harvardyearleft 2013\harvardyearright , `Injection-induced
@@ -29,6 +47,16 @@ Howard, B., Christopher, S., Dane, S. \harvardand\ Josh, L.  \harvardyearleft
   2007\harvardyearright , `epsg projection 4326 - wgs 84'.
 \newline\harvardurl{https://spatialreference.org/ref/epsg/wgs-84/}
 
+\harvarditem{Ioannidis}{2018}{ioannidis2018proposal}
+Ioannidis, J.~P.  \harvardyearleft 2018\harvardyearright , `The proposal to
+  lower p value thresholds to. 005', {\em Jama} {\bf 319}(14),~1429--1430.
+
+\harvarditem{Lundberg \harvardand\ Lee}{2017}{lundberg2017unified}
+Lundberg, S.~M. \harvardand\ Lee, S.-I.  \harvardyearleft 2017\harvardyearright
+  , A unified approach to interpreting model predictions, {\em in} `Proceedings
+  of the 31st international conference on neural information processing
+  systems', pp.~4768--4777.
+
 \harvarditem{Norbeck \harvardand\ Rubinstein}{2018}{norbeck2018hydromechanical}
 Norbeck, J. \harvardand\ Rubinstein, J.~L.  \harvardyearleft
   2018\harvardyearright , `Hydromechanical earthquake nucleation model
@@ -40,18 +68,6 @@ OklahomaCorporationCommission  \harvardyearleft 2021\harvardyearright , `Oil
   and gas data files'.
 \newline\harvardurl{https://spatialreference.org/ref/epsg/wgs-84/}
 
-\harvarditem[Paszke et~al.]{Paszke, Gross, Massa, Lerer, Bradbury, Chanan,
-  Killeen, Lin, Gimelshein, Antiga et~al.}{2019}{paszke2019pytorch}
-Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., Killeen,
-  T., Lin, Z., Gimelshein, N., Antiga, L. et~al.  \harvardyearleft
-  2019\harvardyearright , `Pytorch: An imperative style, high-performance deep
-  learning library', {\em Advances in neural information processing systems}
-  {\bf 32},~8026--8037.
-
-\harvarditem{Patel}{2018}{patel2018two}
-Patel, M.  \harvardyearleft 2018\harvardyearright , `When two trends fuse:
-  Pytorch and recommender systems'.
-
 \harvarditem{Patro \harvardand\ Sahu}{2015}{patro2015normalization}
 Patro, S. \harvardand\ Sahu, K.~K.  \harvardyearleft 2015\harvardyearright ,
   `Normalization: A preprocessing stage', {\em arXiv preprint arXiv:1503.06462}
@@ -62,10 +78,17 @@ PyTorch  \harvardyearleft 2021\harvardyearright , `Stepwise regression tutorial
   in python'.
 \newline\harvardurl{https://pytorch.org/docs/stable/index.html}
 
-\harvarditem{Ryan}{2020}{Ryan}
-Ryan, K.  \harvardyearleft 2020\harvardyearright , `Stepwise regression
-  tutorial in python'.
-\newline\harvardurl{https://towardsdatascience.com/stepwise-regression-tutorial-in-python-ebf7c782c922}
+\harvarditem{Registry}{2021}{FracFocusChemicalDisclosureRegistry}
+Registry, F. F. C.~D.  \harvardyearleft 2021\harvardyearright , `Data
+  download'.
+\newline\harvardurl{https://fracfocus.org/data-download}
+
+\harvarditem[Shrikumar et~al.]{Shrikumar, Greenside \harvardand\
+  Kundaje}{2017}{shrikumar2017learning}
+Shrikumar, A., Greenside, P. \harvardand\ Kundaje, A.  \harvardyearleft
+  2017\harvardyearright , Learning important features through propagating
+  activation differences, {\em in} `International Conference on Machine
+  Learning', PMLR, pp.~3145--3153.
 
 \harvarditem[Sundararajan et~al.]{Sundararajan, Taly \harvardand\
   Yan}{2017}{sundararajan2017axiomatic}
@@ -79,11 +102,5 @@ Walter, J.~I., Ogwari, P., Thiel, A., Ferrer, F., Woelfel, I., Chang, J.~C.,
   Darold, A.~P. \harvardand\ Holland, A.~A.  \harvardyearleft
   2020\harvardyearright , `The oklahoma geological survey statewide seismic
   network', {\em Seismological Research Letters} {\bf 91}(2A),~611--621.
-
-\harvarditem{Wozniakowska \harvardand\ Eaton}{2020}{wozniakowska2020machine}
-Wozniakowska, P. \harvardand\ Eaton, D.~W.  \harvardyearleft
-  2020\harvardyearright , `Machine learning-based analysis of geological
-  susceptibility to induced seismicity in the montney formation, canada', {\em
-  Geophysical Research Letters} {\bf 47}(22),~e2020GL089651.
 
 \end{thebibliography}

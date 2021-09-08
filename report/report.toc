@@ -1,24 +1,30 @@
 \contentsline {section}{Abstract}{2}
 \contentsline {section}{\numberline {1}Introduction}{3}
 \contentsline {section}{\numberline {2}Software Description}{3}
-\contentsline {subsection}{\numberline {2.1}Visualization: Matplotlib \& GeoPandas}{3}
-\contentsline {subsection}{\numberline {2.2}Stepwise Regression}{4}
-\contentsline {subsection}{\numberline {2.3}Neural Network Construction: Pytorch}{5}
-\contentsline {subsection}{\numberline {2.4}Feature Attribution: Captum}{6}
-\contentsline {section}{\numberline {3}Code Metadata}{7}
-\contentsline {section}{\numberline {4}Implementation}{7}
-\contentsline {subsection}{\numberline {4.1}Data Processing and Spatial visualization}{7}
-\contentsline {subsection}{\numberline {4.2}Spatial Griding and Features Extraction}{8}
-\contentsline {subsection}{\numberline {4.3}Stepwise Feature Selection Approach}{10}
-\contentsline {subsection}{\numberline {4.4}Logistic Regression Model}{11}
-\contentsline {subsection}{\numberline {4.5}Neural Network Model}{11}
-\contentsline {subsubsection}{\numberline {4.5.1}Architecture}{11}
-\contentsline {subsubsection}{\numberline {4.5.2}Configuration}{12}
-\contentsline {subsubsection}{\numberline {4.5.3}Training}{13}
-\contentsline {section}{\numberline {5}Results and Discussion}{13}
-\contentsline {subsection}{\numberline {5.1}Visualiztion}{13}
-\contentsline {subsection}{\numberline {5.2}Stepwise Approach}{15}
-\contentsline {subsection}{\numberline {5.3}Model Comparison}{17}
-\contentsline {subsubsection}{\numberline {5.3.1}Logistic Regression Model}{17}
-\contentsline {section}{\numberline {6}Conclusion and Future Work}{21}
-\contentsline {section}{\numberline {7}Appendix}{22}
+\contentsline {subsection}{\numberline {2.1}Feature Selection: Stepwise Regression}{3}
+\contentsline {subsection}{\numberline {2.2}Neural Network Construction: PyTorch}{4}
+\contentsline {subsection}{\numberline {2.3}Feature Attribution: Captum}{4}
+\contentsline {subsection}{\numberline {2.4}Model Evaluation Measures}{4}
+\contentsline {subsubsection}{\numberline {2.4.1}Accuracy, Precision, Recall and F1 Score}{5}
+\contentsline {subsubsection}{\numberline {2.4.2}ROC Curve and AUC Value}{6}
+\contentsline {section}{\numberline {3}Code Metadata}{6}
+\contentsline {section}{\numberline {4}Implementation}{6}
+\contentsline {subsection}{\numberline {4.1}Data Processing and Spatial visualization}{6}
+\contentsline {subsection}{\numberline {4.2}Spatial Griding and Features Extraction}{7}
+\contentsline {subsection}{\numberline {4.3}Stepwise Feature Selection Approach}{8}
+\contentsline {subsection}{\numberline {4.4}Logistic Regression Model}{8}
+\contentsline {subsection}{\numberline {4.5}Neural Network Model}{9}
+\contentsline {subsubsection}{\numberline {4.5.1}Architecture}{9}
+\contentsline {subsubsection}{\numberline {4.5.2}Configuration}{9}
+\contentsline {subsubsection}{\numberline {4.5.3}Training}{10}
+\contentsline {section}{\numberline {5}Results and Discussion}{10}
+\contentsline {subsection}{\numberline {5.1}Visualization}{10}
+\contentsline {subsection}{\numberline {5.2}Features Selection}{12}
+\contentsline {subsection}{\numberline {5.3}Model Evaluation and Comparison}{12}
+\contentsline {subsection}{\numberline {5.4}Feature Importance Analysis}{15}
+\contentsline {section}{\numberline {6}Conclusion and Future Work}{17}
+\contentsline {subsection}{\numberline {6.1}Supplementary Figures}{19}
+\contentsline {subsection}{\numberline {6.2}Supplementary Tables}{22}
+\contentsline {subsection}{\numberline {6.3}Supplementary Codes and Results}{23}
+\contentsline {subsubsection}{\numberline {6.3.1}The Code of Defining NN Model}{23}
+\contentsline {subsubsection}{\numberline {6.3.2}The Process in Stepwise Regression with VIF Checking}{23}

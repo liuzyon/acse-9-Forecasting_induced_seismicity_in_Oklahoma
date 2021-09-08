@@ -1,100 +1,127 @@
 \relax 
 \@writefile{toc}{\contentsline {section}{Abstract}{2}}
 \citation{ellsworth2013injection}
-\citation{norbeck2018hydromechanical}
 \citation{Hough2017WasTM}
 \citation{hincks2018oklahoma}
-\citation{wozniakowska2020machine}
+\citation{norbeck2018hydromechanical}
+\citation{ioannidis2018proposal}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Software Description}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Visualization: Matplotlib \& GeoPandas}{3}}
-\citation{Ryan}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  Earthquake Occurrences in Oklahoma.}}{4}}
-\newlabel{fig:earthquake_plot}{{1}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Stepwise Regression}{4}}
-\newlabel{sec:stepwise}{{2.2}{4}}
-\citation{patel2018two}
-\citation{paszke2019pytorch}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces An algorithm with caption}}{5}}
-\newlabel{alg:cap}{{1}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Neural Network Construction: Pytorch}{5}}
+\newlabel{sec:software_description}{{2}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Feature Selection: Stepwise Regression}{3}}
+\newlabel{sec:stepwise}{{2.1}{3}}
 \citation{PyTorch}
 \citation{sundararajan2017axiomatic}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Feature Attribution: Captum}{6}}
-\newlabel{equ:inreGrad}{{1}{6}}
+\citation{shrikumar2017learning}
+\citation{lundberg2017unified}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Stepwise logistic regression with VIF checking}}{4}}
+\newlabel{alg:cap}{{1}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Neural Network Construction: PyTorch}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Feature Attribution: Captum}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Model Evaluation Measures}{4}}
+\newlabel{sec:model_evaluate_measures}{{2.4}{4}}
+\citation{chhikara1988inverse}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Accuracy, Precision, Recall and F1 Score}{5}}
+\newlabel{sec:APRF}{{2.4.1}{5}}
+\newlabel{equ:accuracy}{{1}{5}}
+\newlabel{equ:precision}{{2}{5}}
+\newlabel{equ:recall}{{3}{5}}
+\newlabel{equ:F1}{{4}{5}}
 \citation{walter2020oklahoma}
 \citation{OklahomaCorporationCommission}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Average Feature Importances for each feature}}{7}}
-\newlabel{tab:feature_importance}{{1}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Code Metadata}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{7}}
-\newlabel{sec:Implementation}{{4}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Processing and Spatial visualization}{7}}
-\newlabel{sec:dpsv}{{4.1}{7}}
+\citation{FracFocusChemicalDisclosureRegistry}
 \citation{epsg}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces The dependencies of this project}}{8}}
-\newlabel{tab:library_dependency}{{2}{8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Spatial Griding and Features Extraction}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  Target variable of earthquake occurrence within the interest area in Oklahoma.}}{9}}
-\newlabel{fig:target_mapping}{{2}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  Correlation Heatmap.}}{10}}
-\newlabel{fig:heatmap}{{3}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Stepwise Feature Selection Approach}{10}}
-\newlabel{sec:SFSA}{{4.3}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}ROC Curve and AUC Value}{6}}
+\newlabel{equ:FPR}{{5}{6}}
+\newlabel{equ:TPR}{{6}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Code Metadata}{6}}
+\newlabel{sec:code_metadata}{{3}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{6}}
+\newlabel{sec:Implementation}{{4}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Processing and Spatial visualization}{6}}
+\newlabel{sec:dpsv}{{4.1}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  Target variable of earthquake occurrence within the interest area in Oklahoma (The white lines display the gridding regions, with a spacing in the x direction of 8 km and the y direction of 5.5 km. The white points denote the earthquake occurrences. The red region denotes it has seismicity in this region and blue region denotes it does not have seismicity in this region).}}{7}}
+\newlabel{fig:target_mapping}{{1}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Spatial Griding and Features Extraction}{7}}
+\citation{benesty2009pearson}
 \citation{patro2015normalization}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Logistic Regression Model}{11}}
-\newlabel{sec:LRM}{{4.4}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Neural Network Model}{11}}
-\newlabel{sec:NNM}{{4.5}{11}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}Architecture}{11}}
+\citation{dunne1997pairing}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  Class label distribution in whole dataset (0: nonseismic region; 1: seismic region).}}{8}}
+\newlabel{fig:class_label}{{2}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Stepwise Feature Selection Approach}{8}}
+\newlabel{sec:SFSA}{{4.3}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Logistic Regression Model}{8}}
+\newlabel{sec:LRM}{{4.4}{8}}
 \citation{de2005tutorial}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  Neural Network Model Architecture.}}{12}}
-\newlabel{fig:neural_network_model}{{4}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.2}Configuration}{12}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.3}Training}{13}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Discussion}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Visualiztion}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Activities during 2011 to 2018 in interest area from Oklahoma.}}{14}}
-\newlabel{fig:activity}{{5}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Depth to basement in Oklahoma.}}{14}}
-\newlabel{fig:depth_to_basement}{{6}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Feature Selection Result with Stepwise Approach.}}{15}}
-\newlabel{fig:stepwise}{{7}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Stepwise Approach}{15}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Indicators of two modules}}{17}}
-\newlabel{tab:Indicators}{{3}{17}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Model Comparison}{17}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Logistic Regression Model}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Class Label Distribution in whole dataset.}}{18}}
-\newlabel{fig:class_label}{{8}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Seismicity Prediction by Logistic Regression Model and Neural Network Model.}}{18}}
-\newlabel{fig:logistic_result}{{9}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Coffecients for Features in Fitted Logistic Regression Model.}}{19}}
-\newlabel{fig:logistic_coffecients}{{10}{19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  Neural Network Model Training Process.}}{20}}
-\newlabel{fig:training_process}{{11}{20}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Seismicity Prediction with Trained Neural Network Model.}}{20}}
-\newlabel{fig:neural_network_result}{{12}{20}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion and Future Work}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Neural Network Model}{9}}
+\newlabel{sec:NNM}{{4.5}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}Architecture}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.2}Configuration}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  Constructed feedforward neural network model architecture.}}{10}}
+\newlabel{fig:neural_network_model}{{3}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.3}Training}{10}}
+\newlabel{sec:NN_training}{{4.5.3}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Discussion}{10}}
+\newlabel{sec:results}{{5}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Visualization}{10}}
+\newlabel{sec:visualization_result}{{5.1}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  Activities during 2011 to 2018 in interest area from Oklahoma (The three black boxes in (a)(b) denote similar dense distribution between seismicity and injections).}}{11}}
+\newlabel{fig:activity}{{4}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Features Selection}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Result of feature selection using stepwise regression with VIF checking.}}{12}}
+\newlabel{fig:stepwise}{{5}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Model Evaluation and Comparison}{12}}
+\newlabel{sec:model_evaluate_comparison}{{5.3}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Confusion matrices of prediction results by LR model and NN model.}}{13}}
+\newlabel{fig:confusion_matrix}{{6}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Measures calculated using confusion matrices by LR model and NN model}}{13}}
+\newlabel{tab:Indicators_by_confusion_matrix}{{1}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  ROC curves by LR model and NN model (Black diagonal line represents random guessing in binary classification problem).}}{14}}
+\newlabel{fig:ROC_curve}{{7}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Seismicity prediction by logistic regression model and neural network model (The black line areas represent the interest areas where the performance compared between LR and NN model in Section\nobreakspace  {}5.3\hbox {}).}}{14}}
+\newlabel{fig:mapping_comparison}{{8}{14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Feature Importance Analysis}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Feature attribution result by LR model and NN model.}}{16}}
+\newlabel{fig:feature_attribution}{{9}{16}}
+\citation{norbeck2018hydromechanical}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion and Future Work}{17}}
+\newlabel{sec:conclusion}{{6}{17}}
 \bibstyle{agsm}
 \bibdata{references.bib}
-\bibcite{de2005tutorial}{{1}{2005}{{De~Boer et~al.}}{{De~Boer, Kroese, Mannor \&\ Rubinstein}}}
-\bibcite{ellsworth2013injection}{{2}{2013}{{Ellsworth}}{{}}}
-\bibcite{hincks2018oklahoma}{{3}{2018}{{Hincks et~al.}}{{Hincks, Aspinall, Cooke \&\ Gernon}}}
-\bibcite{Hough2017WasTM}{{4}{2017}{{Hough et~al.}}{{Hough, Tsai, Walker \&\ Aminzadeh}}}
-\bibcite{epsg}{{5}{2007}{{Howard et~al.}}{{Howard, Christopher, Dane \&\ Josh}}}
-\bibcite{norbeck2018hydromechanical}{{6}{2018}{{Norbeck \&\ Rubinstein}}{{}}}
-\bibcite{OklahomaCorporationCommission}{{7}{2021}{{OklahomaCorporationCommission}}{{}}}
-\bibcite{paszke2019pytorch}{{8}{2019}{{Paszke et~al.}}{{Paszke, Gross, Massa, Lerer, Bradbury, Chanan, Killeen, Lin, Gimelshein, Antiga et~al.}}}
-\bibcite{patel2018two}{{9}{2018}{{Patel}}{{}}}
-\bibcite{patro2015normalization}{{10}{2015}{{Patro \&\ Sahu}}{{}}}
-\bibcite{PyTorch}{{11}{2021}{{PyTorch}}{{}}}
-\bibcite{Ryan}{{12}{2020}{{Ryan}}{{}}}
-\bibcite{sundararajan2017axiomatic}{{13}{2017}{{Sundararajan et~al.}}{{Sundararajan, Taly \&\ Yan}}}
-\bibcite{walter2020oklahoma}{{14}{2020}{{Walter et~al.}}{{Walter, Ogwari, Thiel, Ferrer, Woelfel, Chang, Darold \&\ Holland}}}
-\bibcite{wozniakowska2020machine}{{15}{2020}{{Wozniakowska \&\ Eaton}}{{}}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix}{22}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  The model created from above code simulated through playground.tensorflow.org}}{23}}
-\newlabel{fig:neural_network_example}{{13}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  Feature Importance Example in Captum Tutorial.}}{23}}
-\newlabel{fig:feature_importance}{{14}{23}}
+\bibcite{benesty2009pearson}{{1}{2009}{{Benesty et~al.}}{{Benesty, Chen, Huang \&\ Cohen}}}
+\bibcite{chhikara1988inverse}{{2}{1988}{{Chhikara}}{{}}}
+\bibcite{de2005tutorial}{{3}{2005}{{De~Boer et~al.}}{{De~Boer, Kroese, Mannor \&\ Rubinstein}}}
+\bibcite{dunne1997pairing}{{4}{1997}{{Dunne \&\ Campbell}}{{}}}
+\bibcite{ellsworth2013injection}{{5}{2013}{{Ellsworth}}{{}}}
+\bibcite{hincks2018oklahoma}{{6}{2018}{{Hincks et~al.}}{{Hincks, Aspinall, Cooke \&\ Gernon}}}
+\bibcite{Hough2017WasTM}{{7}{2017}{{Hough et~al.}}{{Hough, Tsai, Walker \&\ Aminzadeh}}}
+\bibcite{epsg}{{8}{2007}{{Howard et~al.}}{{Howard, Christopher, Dane \&\ Josh}}}
+\bibcite{ioannidis2018proposal}{{9}{2018}{{Ioannidis}}{{}}}
+\bibcite{lundberg2017unified}{{10}{2017}{{Lundberg \&\ Lee}}{{}}}
+\bibcite{norbeck2018hydromechanical}{{11}{2018}{{Norbeck \&\ Rubinstein}}{{}}}
+\bibcite{OklahomaCorporationCommission}{{12}{2021}{{OklahomaCorporationCommission}}{{}}}
+\bibcite{patro2015normalization}{{13}{2015}{{Patro \&\ Sahu}}{{}}}
+\bibcite{PyTorch}{{14}{2021}{{PyTorch}}{{}}}
+\bibcite{FracFocusChemicalDisclosureRegistry}{{15}{2021}{{Registry}}{{}}}
+\bibcite{shrikumar2017learning}{{16}{2017}{{Shrikumar et~al.}}{{Shrikumar, Greenside \&\ Kundaje}}}
+\bibcite{sundararajan2017axiomatic}{{17}{2017}{{Sundararajan et~al.}}{{Sundararajan, Taly \&\ Yan}}}
+\bibcite{walter2020oklahoma}{{18}{2020}{{Walter et~al.}}{{Walter, Ogwari, Thiel, Ferrer, Woelfel, Chang, Darold \&\ Holland}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Supplementary Figures}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Earthquake occurrences in Oklahoma. The color of marker represents the magnitude of earthquake. The red box represents the interest area we studied in this project. The longitude ranges in (-99.5W, -96W) and latitude ranges in (35.0N, 37.0N)}}{19}}
+\newlabel{fig:earthquake_plot}{{10}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  Feature selection in stepwise regression with p-value (It is an intermediate step in stepwise logistic regression process. The `injection\_vol', `HF\_Base\_Water\_Volume', `HF\_Base\_NoWater\_Volume' both have a p-value greater than threshold 0.05 in logistic regression results, which are not statistically significant and some of them should be eliminated properly in later process.)}}{20}}
+\newlabel{fig:p-value}{{11}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Correlation heatmap generated in Section\nobreakspace  {}4.3\hbox {}. We noted that there exists multicollinearity (dark blocks in figure) among these candidate features.}}{21}}
+\newlabel{fig:heatmap}{{12}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  Neural network model training process in Section\nobreakspace  {}4.5.3\hbox {}. We stopped training when the log loss of the validation is no longer reduced. It means NN model is currently in an optimal trained state.}}{22}}
+\newlabel{fig:training_process}{{13}{22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Supplementary Tables}{22}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces The dependencies of this project}}{22}}
+\newlabel{tab:library_dependency}{{2}{22}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Features generated by spatial gridding and data collecting for regions}}{23}}
+\newlabel{tab:feature_generated}{{3}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Supplementary Codes and Results}{23}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}The Code of Defining NN Model}{23}}
+\newlabel{sec:NN_code}{{6.3.1}{23}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}The Process in Stepwise Regression with VIF Checking}{23}}
+\newlabel{sec:feature_selection_process}{{6.3.2}{23}}
